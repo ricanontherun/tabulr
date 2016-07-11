@@ -1,3 +1,0 @@
-/home/ricanontherun/Code/Tabulr/build/CMakeFiles/edit_cache.dir
-/home/ricanontherun/Code/Tabulr/build/CMakeFiles/rebuild_cache.dir
-/home/ricanontherun/Code/Tabulr/build/CMakeFiles/tabulr.dir
