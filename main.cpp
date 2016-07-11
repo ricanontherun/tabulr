@@ -13,13 +13,17 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <memory>
-
-#include <table.h>
+#include <sstream>
+#include <iostream>
+#include <column.h>
 
 int main()
 {
-    Tabulr::Table table;
+    Tabulr::Column<int> col(1234);
 
-    Tabulr::Row *row = table.MakeRow();
+    std::stringstream ss;
+
+    ss << col;
+
+    std::cout << ss.str() << std::endl;
 }
