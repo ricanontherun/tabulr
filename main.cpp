@@ -15,15 +15,12 @@
 
 #include <sstream>
 #include <iostream>
+#include <iomanip>
 #include <column.h>
 
 int main()
 {
     Tabulr::Column<int> col(1234);
 
-    std::stringstream ss;
-
-    ss << col;
-
-    std::cout << ss.str() << std::endl;
+    std::cout << col << std::endl;
 }

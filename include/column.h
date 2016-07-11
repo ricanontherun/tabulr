@@ -30,7 +30,7 @@ class Column : public AbstractColumn
         ~Column() {};
 
         template <class Type>
-        friend std::stringstream &operator<<(std::stringstream &, const Column<Type> &);
+        friend std::ostream &operator<<(std::ostream &, const Column<Type> &);
     private:
         T content;
 };
@@ -42,7 +42,7 @@ Column<T>::Column(T content) : content(content)
 }
 
 template <class T>
-std::stringstream &operator<<(std::stringstream &out, const Column<T> &column)
+std::ostream &operator<<(std::ostream &out, const Column<T> &column)
 {
     out << column.content;
     return out;
