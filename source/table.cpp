@@ -12,14 +12,28 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-#include <memory>
-
 #include <table.h>
 
-int main()
+namespace Tabulr
 {
-    Tabulr::Table table;
 
-    Tabulr::Row *row = table.MakeRow();
+Table::Table()
+{
+
+}
+
+/**
+ * Return a pointer to an OWNED Row.
+ *
+ * @return
+ */
+Row *Table::MakeRow()
+{
+    // Add a new row.
+    this->rows.push_back(std::make_unique<Row>());
+
+    // Return a pointer to the row we just created.
+    return this->rows.back().get();
+}
+
 }

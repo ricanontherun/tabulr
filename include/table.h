@@ -26,7 +26,14 @@ namespace Tabulr
 class Table
 {
     public:
-        Table() {};
+        Table();
+
+        /**
+         * Return a pointer to an OWNED Row.
+         *
+         * @return
+         */
+        Row *MakeRow();
 
     private:
         std::vector<std::unique_ptr<Row>> rows;
