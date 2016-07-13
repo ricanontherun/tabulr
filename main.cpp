@@ -13,14 +13,14 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <sstream>
-#include <iostream>
-#include <iomanip>
-#include <column.h>
+#include <tabulr/table.h>
 
 int main()
 {
-    Tabulr::Column<int> col(1234);
+    Tabulr::Table table;
 
-    std::cout << col << std::endl;
+    Tabulr::Row *row = table.MakeRow();
+
+    int i = 1122;
+    row->AddNewColumn(i);
 }

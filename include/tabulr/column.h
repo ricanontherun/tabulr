@@ -12,28 +12,44 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#include <table.h>
+#ifndef TABULR_COLUMN_H
+#define TABULR_COLUMN_H
+
+#include <tabulr/abstract_column.h>
+
+#include <sstream>
 
 namespace Tabulr
 {
 
-Table::Table()
+template <class T>
+class Column : public AbstractColumn
+{
+    public:
+        Column(T);
+        ~Column() {};
+
+        template <class Type>
+        friend std::ostream &operator<<(std::ostream &, const Column<Type> &);
+
+        T content;
+    private:
+};
+
+template <class T>
+Column<T>::Column(T content) : content(content)
 {
 
 }
 
-/**
- * Return a pointer to an OWNED Row.
- *
- * @return
- */
-Row *Table::MakeRow()
+template <class T>
+std::ostream &operator<<(std::ostream &out, const Column<T> &column)
 {
-    // Add a new row.
-    this->rows.push_back(std::make_unique<Row>());
-
-    // Return a pointer to the row we just created.
-    return this->rows.back().get();
+    out << column.content;
+    return out;
 }
 
 }
+
+#endif
+

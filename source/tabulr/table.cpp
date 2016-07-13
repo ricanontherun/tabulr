@@ -12,33 +12,28 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef TABULR_TABLE_H
-#define TABULR_TABLE_H
-
-#include <memory>
-#include <vector>
-
-#include <row.h>
+#include <tabulr/table.h>
 
 namespace Tabulr
 {
 
-class Table
+Table::Table()
 {
-    public:
-        Table();
 
-        /**
-         * Return a pointer to an OWNED Row.
-         *
-         * @return
-         */
-        Row *MakeRow();
+}
 
-    private:
-        std::vector<std::unique_ptr<Row>> rows;
-};
+/**
+ * Return a pointer to an OWNED Row.
+ *
+ * @return
+ */
+Row *Table::MakeRow()
+{
+    // Add a new row.
+    this->rows.push_back(std::make_unique<Row>());
 
-} // Namespace Tabulr
+    // Return a pointer to the row we just created.
+    return this->rows.back().get();
+}
 
-#endif
+}

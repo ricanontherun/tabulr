@@ -12,25 +12,14 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef TABULR_ROW_H
-#define TABULR_ROW_H
-
-#include <memory>
-#include <vector>
-
-#include <abstract_column.h>
+#include <tabulr/row.h>
 
 namespace Tabulr
 {
 
-class Row
+Row::Row()
 {
-    public:
-        Row() {};
-    private:
-        std::vector<std::unique_ptr<AbstractColumn>> columns;
-};
 
 }
 
-#endif
+}
