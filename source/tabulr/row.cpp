@@ -22,4 +22,11 @@ Row::Row()
 
 }
 
+void Row::PrintRow() const
+{
+    for (auto const &it : this->columns) {
+        it.get()->Print();
+    }
+}
+
 }

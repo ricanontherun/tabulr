@@ -15,6 +15,8 @@
 #ifndef TABULR_ABSTRACT_COLUMN_H
 #define TABULR_ABSTRACT_COLUMN_H
 
+#include <iostream>
+
 namespace Tabulr
 {
 
@@ -23,6 +25,7 @@ class AbstractColumn
     public:
         AbstractColumn() {};
         virtual ~AbstractColumn() {};
+        virtual void Print() = 0;
 };
 
 }

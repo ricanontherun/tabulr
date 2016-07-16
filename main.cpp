@@ -23,4 +23,9 @@ int main()
 
     int i = 1122;
     row->AddNewColumn(i);
+
+    double f = 12.3;
+    row->AddNewColumn(f);
+
+    row->PrintRow();
 }

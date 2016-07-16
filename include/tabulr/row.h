@@ -46,21 +46,6 @@ void Row::AddNewColumn(T content)
     this->columns.push_back(std::make_unique<Column<T>>(content));
 }
 
-template <typename T>
-void Row::PrintCell(const std::unique_ptr<AbstractColumn> &col) const
-{
-    Column<T> *column = dynamic_cast<Column<T> *>(col.get());
-
-    std::cout << *column << std::endl;
-}
-
-void Row::PrintRow() const
-{
-    for (auto it : this->columns) {
-        std::cout << it << std::endl;
-    }
-}
-
 }
 
 #endif

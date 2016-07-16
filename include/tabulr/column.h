@@ -17,6 +17,7 @@
 
 #include <tabulr/abstract_column.h>
 
+#include <iostream>
 #include <sstream>
 
 namespace Tabulr
@@ -32,8 +33,10 @@ class Column : public AbstractColumn
         template <class Type>
         friend std::ostream &operator<<(std::ostream &, const Column<Type> &);
 
-        T content;
+        void Print();
+
     private:
+        T content;
 };
 
 template <class T>
@@ -45,8 +48,14 @@ Column<T>::Column(T content) : content(content)
 template <class T>
 std::ostream &operator<<(std::ostream &out, const Column<T> &column)
 {
-    out << column.content;
+    out << "IN COLUMN";
     return out;
+}
+
+template <class T>
+void Column<T>::Print()
+{
+    std::cout << this->content << std::endl;
 }
 
 }
