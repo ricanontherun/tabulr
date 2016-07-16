@@ -25,6 +25,9 @@ class AbstractColumn
     public:
         AbstractColumn() {};
         virtual ~AbstractColumn() {};
+
+        // This is, as far as I know, the only way to print the contents of a Column<T>
+        // given it's base class.
         virtual void Print() = 0;
 };
 

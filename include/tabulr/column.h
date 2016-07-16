@@ -30,9 +30,6 @@ class Column : public AbstractColumn
         Column(T);
         ~Column() {};
 
-        template <class Type>
-        friend std::ostream &operator<<(std::ostream &, const Column<Type> &);
-
         void Print();
 
     private:
@@ -43,13 +40,6 @@ template <class T>
 Column<T>::Column(T content) : content(content)
 {
 
-}
-
-template <class T>
-std::ostream &operator<<(std::ostream &out, const Column<T> &column)
-{
-    out << "IN COLUMN";
-    return out;
 }
 
 template <class T>

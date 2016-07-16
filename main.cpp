@@ -17,15 +17,24 @@
 
 int main()
 {
+    // Make a new table.
     Tabulr::Table table;
 
+    // Make a new row.
+    // NOTE: The pointer returned is OWNED BY table, do don't delete it!
     Tabulr::Row *row = table.MakeRow();
 
+    // Here in lies the power of this class.
+    // We can add columns of ANY type.
     int i = 1122;
     row->AddNewColumn(i);
 
     double f = 12.3;
     row->AddNewColumn(f);
 
+    std::string name("Christian Roman");
+    row->AddNewColumn(name);
+
+    // Print the row's cells.
     row->PrintRow();
 }
