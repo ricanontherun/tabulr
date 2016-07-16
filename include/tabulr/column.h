@@ -30,8 +30,7 @@ class Column : public AbstractColumn
         Column(T);
         ~Column() {};
 
-        void Print();
-
+        std::ostream &Output(std::ostream &out) const;
     private:
         T content;
 };
@@ -43,9 +42,10 @@ Column<T>::Column(T content) : content(content)
 }
 
 template <class T>
-void Column<T>::Print()
+std::ostream &Column<T>::Output(std::ostream &out) const
 {
-    std::cout << this->content << std::endl;
+    out << this->content;
+    return out;
 }
 
 }
