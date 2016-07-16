@@ -14,6 +14,8 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <tabulr/table.h>
 
+#include <tabulr/config.h>
+
 namespace Tabulr
 {
 
@@ -23,7 +25,8 @@ Table::Table()
 }
 
 /**
- * Return a pointer to an OWNED Row.
+ * Make a new row which is managed interally by the table.
+ * The point returned by this function is managed interally, do not deleted it.
  *
  * @return
  */
@@ -36,10 +39,27 @@ Row *Table::MakeRow()
     return this->rows.back().get();
 }
 
+/**
+ * Set the column config. Each vector element represents the configuration
+ * for it's associated column in the order the were added to each row.
+ *
+ * @param std::vector
+ *
+ * @return
+ */
+Table *Table::SetColumnConfig(std::vector<struct ColumnConfig> config)
+{
+    this->column_config = config;
+
+    return this;
+}
+
 std::ostream &operator<<(std::ostream &out, const Table &table)
 {
     for ( auto const &it : table.rows ) {
-        out << *it << std::endl;
+        it->ToStream(out, this->column_config);
+
+        out << std::endl;
     }
 
     return out;

@@ -29,13 +29,17 @@ class Row
     public:
         Row();
 
+        /**
+         * Insert a new, managed cell into the row.
+         *
+         * @param content
+         *
+         * @return
+         */
         template <typename T>
         Row *InsertCell(T content);
 
-        void PrintRow() const;
-        friend std::ostream &operator<<(std::ostream &, const Row &);
-    protected:
-        std::ostream &Inject(std::ostream &) const;
+        std::ostream &ToStream(std::ostream &, const std::vector<ColumnConfig> &) const;
     private:
         std::vector<std::unique_ptr<AbstractCell>> cells;
 };

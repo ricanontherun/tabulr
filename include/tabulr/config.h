@@ -12,28 +12,16 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#include <tabulr/row.h>
+#ifndef TABULR_CONFIG_H
+#define TABULR_CONFIG_H
 
 namespace Tabulr
 {
 
-Row::Row()
+struct ColumnConfig
 {
+    int width;
+};
 
 }
-
-std::ostream &Row::ToStream(std::ostream &out, const std::vector<ColumnConfig> &column_config) const
-{
-    for ( auto const &it : this->cells ) {
-        // Does this cell have an associated configuration?
-
-        // We need to give each cell it's associated confiration, if applicable.
-        it.get()->Output(out);
-
-        out << " ";
-    }
-
-    return out;
-}
-
-}
+#endif

@@ -29,14 +29,26 @@ class Table
         Table();
 
         /**
-         * Return a pointer to an OWNED Row.
+         * Make a new row which is managed interally by the table.
+         * The point returned by this function is managed interally, do not deleted it.
          *
          * @return
          */
         Row *MakeRow();
 
+        /**
+         * Set the column config. Each vector element represents the configuration
+         * for it's associated column in the order the were added to each row.
+         *
+         * @param std::vector
+         *
+         * @return
+         */
+        Table *SetColumnConfig(std::vector<struct ColumnConfig>);
+
         friend std::ostream &operator<<(std::ostream &, const Table &);
     private:
+        std::vector<struct ColumnConfig> column_config;
         std::vector<std::unique_ptr<Row>> rows;
 };
 

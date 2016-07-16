@@ -14,14 +14,25 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <tabulr/table.h>
+#include <tabulr/config.h>
+
+#include <vector>
+#include <iostream>
 
 int main()
 {
+    std::vector<struct Tabulr::ColumnConfig> config = {
+        { .width = 20 },
+        { .width = 10}
+    };
+
     // Make a new table.
     Tabulr::Table table;
 
-    // Make a new row.
-    // NOTE: The pointer returned is OWNED BY table, do don't delete it!
+    // Set the config, styling
+    table.SetColumnConfig(config);
+
+    // Make a row which will act as a header.
     Tabulr::Row *heading = table.MakeRow();
 
     heading->InsertCell("Quarter")->InsertCell("Manager")->InsertCell("Earnings");
