@@ -20,11 +20,11 @@
 namespace Tabulr
 {
 
-class AbstractColumn
+class AbstractCell
 {
     public:
-        AbstractColumn() {};
-        virtual ~AbstractColumn() {};
+        AbstractCell() {};
+        virtual ~AbstractCell() {};
 
         // This is, as far as I know, the only way to print the contents of a Column<T>
         // given it's base class.

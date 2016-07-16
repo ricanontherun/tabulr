@@ -15,7 +15,7 @@
 #ifndef TABULR_COLUMN_H
 #define TABULR_COLUMN_H
 
-#include <tabulr/abstract_column.h>
+#include <tabulr/abstract_cell.h>
 
 #include <iostream>
 #include <sstream>
@@ -24,11 +24,11 @@ namespace Tabulr
 {
 
 template <class T>
-class Column : public AbstractColumn
+class Cell : public AbstractCell
 {
     public:
-        Column(T);
-        ~Column() {};
+        Cell(T);
+        ~Cell() {};
 
         std::ostream &Output(std::ostream &out) const;
     private:
@@ -36,13 +36,13 @@ class Column : public AbstractColumn
 };
 
 template <class T>
-Column<T>::Column(T content) : content(content)
+Cell<T>::Cell(T content) : content(content)
 {
 
 }
 
 template <class T>
-std::ostream &Column<T>::Output(std::ostream &out) const
+std::ostream &Cell<T>::Output(std::ostream &out) const
 {
     out << this->content;
     return out;

@@ -15,11 +15,11 @@
 #ifndef TABULR_ROW_H
 #define TABULR_ROW_H
 
-#include <iostream>
 #include <memory>
 #include <vector>
+#include <iostream>
 
-#include <tabulr/column.h>
+#include <tabulr/cell.h>
 
 namespace Tabulr
 {
@@ -30,20 +30,17 @@ class Row
         Row();
 
         template <typename T>
-        void AddNewColumn(T content);
-
-        template <typename T>
-        void PrintCell(const std::unique_ptr<AbstractColumn> &col) const;
+        void InsertCell(T content);
 
         void PrintRow() const;
     private:
-        std::vector<std::unique_ptr<AbstractColumn>> columns;
+        std::vector<std::unique_ptr<AbstractCell>> cells;
 };
 
 template <typename T>
-void Row::AddNewColumn(T content)
+void Row::InsertCell(T content)
 {
-    this->columns.push_back(std::make_unique<Column<T>>(content));
+    this->cells.push_back(std::make_unique<Cell<T>>(content));
 }
 
 }

@@ -24,7 +24,7 @@ Row::Row()
 
 void Row::PrintRow() const
 {
-    for (auto const &it : this->columns) {
+    for ( auto const &it : this->cells ) {
         it.get()->Output(std::cout) << std::endl;
 
     }

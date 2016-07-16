@@ -25,15 +25,15 @@ int main()
     Tabulr::Row *row = table.MakeRow();
 
     // Here in lies the power of this class.
-    // We can add columns of ANY type.
+    // We can add cells of ANY type.
     int i = 1122;
-    row->AddNewColumn(i);
+    row->InsertCell(i);
 
     double f = 12.3;
-    row->AddNewColumn(f);
+    row->InsertCell(f);
 
     std::string name("Christian Roman");
-    row->AddNewColumn(name);
+    row->InsertCell(name);
 
     // Print the row's cells.
     row->PrintRow();
