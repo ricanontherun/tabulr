@@ -36,4 +36,13 @@ Row *Table::MakeRow()
     return this->rows.back().get();
 }
 
+std::ostream &operator<<(std::ostream &out, const Table &table)
+{
+    for ( auto const &it : table.rows ) {
+        out << *it << std::endl;
+    }
+
+    return out;
+}
+
 }

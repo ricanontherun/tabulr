@@ -35,6 +35,7 @@ class Table
          */
         Row *MakeRow();
 
+        friend std::ostream &operator<<(std::ostream &, const Table &);
     private:
         std::vector<std::unique_ptr<Row>> rows;
 };

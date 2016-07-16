@@ -30,17 +30,22 @@ class Row
         Row();
 
         template <typename T>
-        void InsertCell(T content);
+        Row *InsertCell(T content);
 
         void PrintRow() const;
+        friend std::ostream &operator<<(std::ostream &, const Row &);
+    protected:
+        std::ostream &Inject(std::ostream &) const;
     private:
         std::vector<std::unique_ptr<AbstractCell>> cells;
 };
 
 template <typename T>
-void Row::InsertCell(T content)
+Row *Row::InsertCell(T content)
 {
     this->cells.push_back(std::make_unique<Cell<T>>(content));
+
+    return this;
 }
 
 }

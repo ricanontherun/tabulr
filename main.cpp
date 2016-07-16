@@ -22,19 +22,13 @@ int main()
 
     // Make a new row.
     // NOTE: The pointer returned is OWNED BY table, do don't delete it!
+    Tabulr::Row *heading = table.MakeRow();
+
+    heading->InsertCell("Quarter")->InsertCell("Manager")->InsertCell("Earnings");
+
     Tabulr::Row *row = table.MakeRow();
 
-    // Here in lies the power of this class.
-    // We can add cells of ANY type.
-    int i = 1122;
-    row->InsertCell(i);
+    row->InsertCell(1)->InsertCell("Christian")->InsertCell(13345.45);
 
-    double f = 12.3;
-    row->InsertCell(f);
-
-    std::string name("Christian Roman");
-    row->InsertCell(name);
-
-    // Print the row's cells.
-    row->PrintRow();
+    std::cout << table;
 }

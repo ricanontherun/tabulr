@@ -24,10 +24,23 @@ Row::Row()
 
 void Row::PrintRow() const
 {
-    for ( auto const &it : this->cells ) {
-        it.get()->Output(std::cout) << std::endl;
+}
 
+/**
+ * Operator overloads
+ */
+std::ostream &operator<<(std::ostream &out, const Row &row)
+{
+    return row.Inject(out);
+}
+
+std::ostream &Row::Inject(std::ostream &out) const
+{
+    for ( auto const &it : this->cells ) {
+        it.get()->Output(out);
     }
+
+    return out;
 }
 
 }
