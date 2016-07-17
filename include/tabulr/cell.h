@@ -17,8 +17,9 @@
 
 #include <tabulr/abstract_cell.h>
 
-#include <iostream>
 #include <sstream>
+#include <iostream>
+#include <iomanip>
 
 namespace Tabulr
 {
@@ -30,7 +31,8 @@ class Cell : public AbstractCell
         Cell(T);
         ~Cell() {};
 
-        std::ostream &Output(std::ostream &out) const;
+        std::ostream &ToStream(std::ostream &out) const;
+        std::ostream &ToStream(std::ostream &out, const ColumnFormat &) const;
     private:
         T content;
 };
@@ -42,10 +44,36 @@ Cell<T>::Cell(T content) : content(content)
 }
 
 template <class T>
-std::ostream &Cell<T>::Output(std::ostream &out) const
+std::ostream &Cell<T>::ToStream(std::ostream &out) const
 {
     out << this->content;
     return out;
+}
+
+template <class T>
+std::ostream &Cell<T>::ToStream(std::ostream &out, const ColumnFormat &format) const
+{
+    if ( format.width ) {
+        out << std::setw(format.width);
+    }
+
+    std::uint8_t position = static_cast<std::uint8_t>(format.position);
+
+    if ( position ) {
+        switch ( format.position ) {
+            case POSITION::LEFT:
+                out << std::left;
+                break;
+            case POSITION::INTERNAL:
+                out << std::internal;
+                break;
+            case POSITION::RIGHT:
+                out << std::right;
+                break;
+        }
+    }
+
+    return this->ToStream(out);
 }
 
 }

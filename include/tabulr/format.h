@@ -12,15 +12,25 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#ifndef TABULR_CONFIG_H
-#define TABULR_CONFIG_H
+#ifndef TABULR_FORMAT_H
+#define TABULR_FORMAT_H
+
+#include <cstdint>
 
 namespace Tabulr
 {
 
-struct ColumnConfig
+enum class POSITION : std::uint8_t
+{
+    LEFT = 1,
+    INTERNAL,
+    RIGHT
+};
+
+struct ColumnFormat
 {
     int width;
+    POSITION position;
 };
 
 }

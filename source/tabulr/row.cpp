@@ -12,7 +12,10 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 #include <tabulr/row.h>
+
+#include <tabulr/format.h>
 
 namespace Tabulr
 {
@@ -24,17 +27,20 @@ Row::Row()
 
 std::ostream &Row::ToStream(
         std::ostream &out,
-        const std::vector<ColumnConfig> &column_config
+        const std::vector<ColumnFormat> &column_config
 ) const
 {
     uint32_t index = 0;
-    for ( auto const &it : this->cells ) {
-        if ( index < column_config.size() ) {
-        }
-        // Does this cell have an associated configuration?
+    uint32_t config_size = column_config.size();
 
-        // We need to give each cell it's associated confiration, if applicable.
-        it.get()->Output(out);
+    for ( auto const &it : this->cells ) {
+        // We need to determine if there is a associated configuration for this column.
+        if ( index < config_size ) {
+            ColumnFormat format = column_config[index];
+            it.get()->ToStream(out, format);
+        } else {
+            it.get()->ToStream(out);
+        }
 
         out << " ";
 

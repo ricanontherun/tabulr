@@ -14,23 +14,26 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <tabulr/table.h>
-#include <tabulr/config.h>
+#include <tabulr/format.h>
 
 #include <vector>
 #include <iostream>
 
 int main()
 {
-    std::vector<struct Tabulr::ColumnConfig> config = {
-        { .width = 20 },
-        { .width = 10}
-    };
+    std::vector<struct Tabulr::ColumnFormat> format;
+
+    Tabulr::ColumnFormat col1;
+    col1.width = 10;
+    col1.position = Tabulr::POSITION::LEFT;
+
+    format.push_back(col1);
 
     // Make a new table.
     Tabulr::Table table;
 
-    // Set the config, styling
-    table.SetColumnConfig(config);
+    // Set the format, styling
+    table.SetColumnFormat(format);
 
     // Make a row which will act as a header.
     Tabulr::Row *heading = table.MakeRow();

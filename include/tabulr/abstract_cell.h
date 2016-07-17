@@ -17,6 +17,8 @@
 
 #include <iostream>
 
+#include <tabulr/format.h>
+
 namespace Tabulr
 {
 
@@ -26,9 +28,8 @@ class AbstractCell
         AbstractCell() {};
         virtual ~AbstractCell() {};
 
-        // This is, as far as I know, the only way to print the contents of a Column<T>
-        // given it's base class.
-        virtual std::ostream &Output(std::ostream &) const = 0;
+        virtual std::ostream &ToStream(std::ostream &) const = 0;
+        virtual std::ostream &ToStream(std::ostream &, const ColumnFormat &) const = 0;
 };
 
 }

@@ -20,7 +20,7 @@
 #include <iostream>
 
 #include <tabulr/cell.h>
-#include <tabulr/config.h>
+#include <tabulr/format.h>
 
 namespace Tabulr
 {
@@ -42,7 +42,7 @@ class Row
 
         std::ostream &ToStream(
                 std::ostream &,
-                const std::vector<ColumnConfig> &
+                const std::vector<ColumnFormat> &
         ) const;
     private:
         std::vector<std::unique_ptr<AbstractCell>> cells;

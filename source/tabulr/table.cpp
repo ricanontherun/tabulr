@@ -14,7 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <tabulr/table.h>
 
-#include <tabulr/config.h>
+#include <tabulr/format.h>
 
 namespace Tabulr
 {
@@ -47,14 +47,14 @@ Row *Table::MakeRow()
  *
  * @return
  */
-Table *Table::SetColumnConfig(std::vector<struct ColumnConfig> config)
+Table *Table::SetColumnFormat(std::vector<struct ColumnFormat> config)
 {
     this->column_config = config;
 
     return this;
 }
 
-const std::vector<ColumnConfig> &Table::GetColumnConfig() const
+const std::vector<ColumnFormat> &Table::GetColumnFormat() const
 {
     return this->column_config;
 }
@@ -62,7 +62,7 @@ const std::vector<ColumnConfig> &Table::GetColumnConfig() const
 std::ostream &operator<<(std::ostream &out, const Table &table)
 {
     for ( auto const &it : table.rows ) {
-        it->ToStream(out, table.GetColumnConfig());
+        it->ToStream(out, table.GetColumnFormat());
 
         out << std::endl;
     }
