@@ -20,6 +20,7 @@
 #include <iostream>
 
 #include <tabulr/cell.h>
+#include <tabulr/config.h>
 
 namespace Tabulr
 {
@@ -39,7 +40,10 @@ class Row
         template <typename T>
         Row *InsertCell(T content);
 
-        std::ostream &ToStream(std::ostream &, const std::vector<ColumnConfig> &) const;
+        std::ostream &ToStream(
+                std::ostream &,
+                const std::vector<ColumnConfig> &
+        ) const;
     private:
         std::vector<std::unique_ptr<AbstractCell>> cells;
 };

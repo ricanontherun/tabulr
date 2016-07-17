@@ -22,15 +22,23 @@ Row::Row()
 
 }
 
-std::ostream &Row::ToStream(std::ostream &out, const std::vector<ColumnConfig> &column_config) const
+std::ostream &Row::ToStream(
+        std::ostream &out,
+        const std::vector<ColumnConfig> &column_config
+) const
 {
+    uint32_t index = 0;
     for ( auto const &it : this->cells ) {
+        if ( index < column_config.size() ) {
+        }
         // Does this cell have an associated configuration?
 
         // We need to give each cell it's associated confiration, if applicable.
         it.get()->Output(out);
 
         out << " ";
+
+        index++;
     }
 
     return out;

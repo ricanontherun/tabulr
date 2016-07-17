@@ -54,10 +54,15 @@ Table *Table::SetColumnConfig(std::vector<struct ColumnConfig> config)
     return this;
 }
 
+const std::vector<ColumnConfig> &Table::GetColumnConfig() const
+{
+    return this->column_config;
+}
+
 std::ostream &operator<<(std::ostream &out, const Table &table)
 {
     for ( auto const &it : table.rows ) {
-        it->ToStream(out, this->column_config);
+        it->ToStream(out, table.GetColumnConfig());
 
         out << std::endl;
     }

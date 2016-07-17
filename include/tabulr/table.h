@@ -46,6 +46,8 @@ class Table
          */
         Table *SetColumnConfig(std::vector<struct ColumnConfig>);
 
+        const std::vector<struct ColumnConfig> &GetColumnConfig() const;
+
         friend std::ostream &operator<<(std::ostream &, const Table &);
     private:
         std::vector<struct ColumnConfig> column_config;
