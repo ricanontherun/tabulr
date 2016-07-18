@@ -23,11 +23,23 @@ int main()
 {
     std::vector<struct Tabulr::ColumnFormat> format;
 
-    Tabulr::ColumnFormat col1;
-    col1.width = 10;
-    col1.position = Tabulr::POSITION::LEFT;
+    Tabulr::ColumnFormat col1 = {
+        .width = 10, .precision = 1, .fill = ' ', .position = Tabulr::POSITION::LEFT
+    };
 
     format.push_back(col1);
+
+    Tabulr::ColumnFormat col2 = {
+        .width = 10, .precision = 1, .fill = ' ', .position = Tabulr::POSITION::RIGHT
+    };
+
+    format.push_back(col2);
+
+    Tabulr::ColumnFormat col3 = {
+        .width = 20, .precision = 2, .fill = ' ', .position = Tabulr::POSITION::RIGHT
+    };
+
+    format.push_back(col3);
 
     // Make a new table.
     Tabulr::Table table;

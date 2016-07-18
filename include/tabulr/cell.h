@@ -57,6 +57,14 @@ std::ostream &Cell<T>::ToStream(std::ostream &out, const ColumnFormat &format) c
         out << std::setw(format.width);
     }
 
+    if ( format.fill ) {
+        out << std::setfill(format.fill);
+    }
+
+    if ( format.precision ) {
+        out << std::setprecision(format.precision);
+    }
+
     std::uint8_t position = static_cast<std::uint8_t>(format.position);
 
     if ( position ) {

@@ -30,6 +30,8 @@ enum class POSITION : std::uint8_t
 struct ColumnFormat
 {
     int width;
+    int precision;
+    char fill;
     POSITION position;
 };
 
