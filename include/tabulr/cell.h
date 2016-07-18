@@ -61,7 +61,8 @@ std::ostream &Cell<T>::ToStream(std::ostream &out, const ColumnFormat &format) c
         out << std::setfill(format.fill);
     }
 
-    if ( format.precision ) {
+    if ( format.precision != 0 ) {
+        out << std::fixed;
         out << std::setprecision(format.precision);
     }
 

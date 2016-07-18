@@ -30,13 +30,13 @@ int main()
     format.push_back(col1);
 
     Tabulr::ColumnFormat col2 = {
-        .width = 10, .precision = 1, .fill = ' ', .position = Tabulr::POSITION::RIGHT
+        .width = 10, .precision = 1, .fill = ' ', .position = Tabulr::POSITION::LEFT
     };
 
     format.push_back(col2);
 
     Tabulr::ColumnFormat col3 = {
-        .width = 20, .precision = 2, .fill = ' ', .position = Tabulr::POSITION::RIGHT
+        .width = 30, .precision = 2, .fill = ' ', .position = Tabulr::POSITION::LEFT
     };
 
     format.push_back(col3);
