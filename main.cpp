@@ -21,28 +21,28 @@
 
 int main()
 {
+    // Make a new table.
+    Tabulr::Table table;
+
     std::vector<struct Tabulr::ColumnFormat> format;
 
-    Tabulr::ColumnFormat col1 = {
+    Tabulr::ColumnFormat col_quarter = {
         .width = 10, .precision = 1, .fill = ' ', .position = Tabulr::POSITION::LEFT
     };
 
-    format.push_back(col1);
+    format.push_back(col_quarter);
 
-    Tabulr::ColumnFormat col2 = {
+    Tabulr::ColumnFormat col_manager = {
         .width = 10, .precision = 1, .fill = ' ', .position = Tabulr::POSITION::LEFT
     };
 
-    format.push_back(col2);
+    format.push_back(col_manager);
 
-    Tabulr::ColumnFormat col3 = {
+    Tabulr::ColumnFormat col_earnings = {
         .width = 30, .precision = 2, .fill = ' ', .position = Tabulr::POSITION::LEFT
     };
 
-    format.push_back(col3);
-
-    // Make a new table.
-    Tabulr::Table table;
+    format.push_back(col_earnings);
 
     // Set the format, styling
     table.SetColumnFormat(format);
@@ -55,6 +55,10 @@ int main()
     Tabulr::Row *row = table.MakeRow();
 
     row->InsertCell(1)->InsertCell("Christian")->InsertCell(13345.45);
+
+    row = table.MakeRow();
+
+    row->InsertCell(2)->InsertCell("Jacob")->InsertCell(23453.45);
 
     std::cout << table;
 }
