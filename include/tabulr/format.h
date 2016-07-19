@@ -35,5 +35,8 @@ struct ColumnFormat
     POSITION position;
 };
 
+typedef struct ColumnFormat CellFormat;
+
 }
+
 #endif

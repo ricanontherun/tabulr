@@ -8,8 +8,35 @@
 #include <tabulr/cell.h>
 #include <tabulr/format.h>
 
+class Mock
+{
+    public:
+        friend std::ostream &operator<<(std::ostream &out, const Mock &mock)
+        {
+            out << "Hello from the Mock object";
+            return out;
+        }
+};
+
 SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
 {
+    GIVEN("A cell of type Mock")
+    {
+        Mock m;
+        Tabulr::Cell<Mock> cell(m);
+
+        WHEN("We output the mock object into a stream")
+        {
+            std::stringstream actual;
+            cell.ToStream(actual);
+
+            THEN("The stream should be equal to 'Hello from the Mock object'")
+            {
+                REQUIRE(actual.str() == "Hello from the Mock object");
+            }
+        }
+    }
+
     GIVEN("A string cell with contents 'Christian Roman'")
     {
         Tabulr::Cell<std::string> cell("Christian Roman");
@@ -51,9 +78,9 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
 
     GIVEN("A cell with contents 1234.45")
     {
-        Tabulr::Cell<double> cell_double(1234.45);
+        Tabulr::Cell<double> cell(1234.45);
 
-        WHEN("The thing is placed into a string with decimal places of precision")
+        WHEN("We output the cell into a string with 3 decimal points of precision")
         {
             Tabulr::ColumnFormat format;
             format.precision = 3;
@@ -63,9 +90,56 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
             expected << 1234.45;
 
             std::stringstream actual;
-            thing.ToStream(actual, format);
+            cell.ToStream(actual, format);
 
-            double("The two string should be identical")
+            THEN("The two string should be identical")
+            {
+                REQUIRE(actual.str() == expected.str());
+            }
+        }
+    }
+
+    GIVEN("A cell with contents 'Fill to the left'")
+    {
+        Tabulr::Cell<std::string> cell("Fill to the left");
+
+        WHEN("We ouput the cell with filling to the left of the string")
+        {
+            Tabulr::CellFormat format;
+            format.fill = '-';
+            format.width = 50;
+
+            std::stringstream expected;
+            expected << std::setfill(format.fill);
+            expected << std::setw(format.width);
+            expected << "Fill to the left";
+
+            std::stringstream actual;
+            cell.ToStream(actual, format);
+
+            THEN("The two strings should be identical")
+            {
+                REQUIRE(actual.str() == expected.str());
+            }
+        }
+
+        WHEN("We output the cell with to the right of the string")
+        {
+            Tabulr::CellFormat format;
+            format.fill = '-';
+            format.width = 50;
+            format.position = Tabulr::POSITION::RIGHT;
+
+            std::stringstream expected;
+            expected << std::right;
+            expected << std::setfill(format.fill);
+            expected << std::setw(format.width);
+            expected << "Fill to the left";
+
+            std::stringstream actual;
+            cell.ToStream(actual, format);
+
+            THEN("The two strings should be identical")
             {
                 REQUIRE(actual.str() == expected.str());
             }
