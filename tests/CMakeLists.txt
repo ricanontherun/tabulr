@@ -6,6 +6,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -Werror -Wall")
 
 set(SOURCES
     TestCell.cpp
+    TestRow.cpp
 )
 
 include_directories(../include)
