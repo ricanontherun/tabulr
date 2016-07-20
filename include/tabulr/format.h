@@ -27,15 +27,17 @@ enum class POSITION : std::uint8_t
     RIGHT
 };
 
-struct ColumnFormat
+struct CellFormat
 {
-    int width;
-    int precision;
-    char fill;
+    int width = 0;
+    int precision = 0;
+    char fill = ' ';
     POSITION position;
 };
 
-typedef struct ColumnFormat CellFormat;
+// Although the uses of format is different when applied to
+// a cell vs an entire table, the carry the same data.
+typedef CellFormat ColumnFormat;
 
 }
 

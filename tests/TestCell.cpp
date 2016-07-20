@@ -103,14 +103,14 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
     {
         Tabulr::Cell<std::string> cell("Fill to the left");
 
-        WHEN("We ouput the cell with filling to the left of the string")
+        WHEN("We output the cell with left positioning")
         {
             Tabulr::CellFormat format;
-            format.fill = '-';
-            format.width = 50;
+            format.width = 100;
+            format.position = Tabulr::POSITION::LEFT;
 
             std::stringstream expected;
-            expected << std::setfill(format.fill);
+            expected << std::left;
             expected << std::setw(format.width);
             expected << "Fill to the left";
 
@@ -126,13 +126,11 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
         WHEN("We output the cell with to the right of the string")
         {
             Tabulr::CellFormat format;
-            format.fill = '-';
-            format.width = 50;
+            format.width = 100;
             format.position = Tabulr::POSITION::RIGHT;
 
             std::stringstream expected;
             expected << std::right;
-            expected << std::setfill(format.fill);
             expected << std::setw(format.width);
             expected << "Fill to the left";
 
@@ -144,6 +142,7 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
                 REQUIRE(actual.str() == expected.str());
             }
         }
+
     }
 }
 
