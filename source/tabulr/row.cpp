@@ -33,7 +33,11 @@ std::ostream &Row::ToStream(std::ostream &out) const
     for ( auto const &cell_it : this->cells ) {
         cell_it.get()->ToStream(out);
 
-        if ( 0 < index && index <= size) {
+        if ( size == 1 ) {
+            continue;
+        }
+
+        if ( index != size - 1 ) {
             out << " ";
         }
 
@@ -48,7 +52,8 @@ std::ostream &Row::ToStream(
         const std::vector<ColumnFormat> &column_config
 ) const
 {
-    uint32_t index = 0;
+    size_t index = 0;
+    size_t size = this->cells.size();
     uint32_t config_size = column_config.size();
 
     for ( auto const &cell_it : this->cells ) {
@@ -60,7 +65,13 @@ std::ostream &Row::ToStream(
             cell_it.get()->ToStream(out);
         }
 
-        out << " ";
+        if ( size == 1 ) {
+            continue;
+        }
+
+        if ( index != size - 1 ) {
+            out << " ";
+        }
 
         index++;
     }
