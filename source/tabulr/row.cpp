@@ -25,6 +25,24 @@ Row::Row()
 
 }
 
+std::ostream &Row::ToStream(std::ostream &out) const
+{
+    size_t size = this->cells.size();
+    size_t index = 0;
+
+    for ( auto const &cell_it : this->cells ) {
+        cell_it.get()->ToStream(out);
+
+        if ( 0 < index && index <= size) {
+            out << " ";
+        }
+
+        index++;
+    }
+
+    return out;
+}
+
 std::ostream &Row::ToStream(
         std::ostream &out,
         const std::vector<ColumnFormat> &column_config
@@ -33,13 +51,13 @@ std::ostream &Row::ToStream(
     uint32_t index = 0;
     uint32_t config_size = column_config.size();
 
-    for ( auto const &it : this->cells ) {
+    for ( auto const &cell_it : this->cells ) {
         // We need to determine if there is a associated configuration for this column.
         if ( index < config_size ) {
             ColumnFormat format = column_config[index];
-            it.get()->ToStream(out, format);
+            cell_it.get()->ToStream(out, format);
         } else {
-            it.get()->ToStream(out);
+            cell_it.get()->ToStream(out);
         }
 
         out << " ";

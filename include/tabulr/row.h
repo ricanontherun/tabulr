@@ -40,6 +40,7 @@ class Row
         template <typename T>
         Row *InsertCell(T content);
 
+        std::ostream &ToStream(std::ostream &) const;
         std::ostream &ToStream(
                 std::ostream &,
                 const std::vector<ColumnFormat> &

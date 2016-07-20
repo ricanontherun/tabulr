@@ -61,8 +61,8 @@ const std::vector<ColumnFormat> &Table::GetColumnFormat() const
 
 std::ostream &operator<<(std::ostream &out, const Table &table)
 {
-    for ( auto const &it : table.rows ) {
-        it->ToStream(out, table.GetColumnFormat());
+    for ( auto const &row_it : table.rows ) {
+        row_it->ToStream(out, table.GetColumnFormat());
 
         out << std::endl;
     }

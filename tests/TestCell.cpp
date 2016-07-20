@@ -99,9 +99,9 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
         }
     }
 
-    GIVEN("A cell with contents 'Fill to the left'")
+    GIVEN("A cell with contents 1234.56")
     {
-        Tabulr::Cell<std::string> cell("Fill to the left");
+        Tabulr::Cell<double> cell(-1234.56);
 
         WHEN("We output the cell with left positioning")
         {
@@ -112,7 +112,7 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
             std::stringstream expected;
             expected << std::left;
             expected << std::setw(format.width);
-            expected << "Fill to the left";
+            expected << -1234.56;
 
             std::stringstream actual;
             cell.ToStream(actual, format);
@@ -123,7 +123,7 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
             }
         }
 
-        WHEN("We output the cell with to the right of the string")
+        WHEN("We output the cell with right positioning")
         {
             Tabulr::CellFormat format;
             format.width = 100;
@@ -132,7 +132,7 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
             std::stringstream expected;
             expected << std::right;
             expected << std::setw(format.width);
-            expected << "Fill to the left";
+            expected << -1234.56;
 
             std::stringstream actual;
             cell.ToStream(actual, format);
@@ -143,6 +143,25 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
             }
         }
 
+        WHEN("We output the cell with internal positioning")
+        {
+            Tabulr::CellFormat format;
+            format.width = 100;
+            format.position = Tabulr::POSITION::INTERNAL;
+
+            std::stringstream expected;
+            expected << std::internal;
+            expected << std::setw(format.width);
+            expected << -1234.56;
+
+            std::stringstream actual;
+            cell.ToStream(actual, format);
+
+            THEN("The two strings should be identical")
+            {
+                REQUIRE(actual.str() == expected.str());
+            }
+        }
     }
 }
 
