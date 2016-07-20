@@ -58,3 +58,4 @@ SCENARIO("Plain row", "[row] [bdd]")
         }
     }
 }
+

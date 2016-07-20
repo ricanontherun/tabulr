@@ -105,7 +105,7 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
 
         WHEN("We output the cell with left positioning")
         {
-            Tabulr::CellFormat format;
+            Tabulr::ColumnFormat format;
             format.width = 100;
             format.position = Tabulr::POSITION::LEFT;
 
@@ -125,7 +125,7 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
 
         WHEN("We output the cell with right positioning")
         {
-            Tabulr::CellFormat format;
+            Tabulr::ColumnFormat format;
             format.width = 100;
             format.position = Tabulr::POSITION::RIGHT;
 
@@ -145,7 +145,7 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
 
         WHEN("We output the cell with internal positioning")
         {
-            Tabulr::CellFormat format;
+            Tabulr::ColumnFormat format;
             format.width = 100;
             format.position = Tabulr::POSITION::INTERNAL;
 
