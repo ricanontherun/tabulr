@@ -1,4 +1,7 @@
 language: cpp
+before_script:
+    - mkdir build
+    - mkdir tests/build
 script:
     - sh build.sh
     - ./tests/build/bin/tests
