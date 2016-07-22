@@ -1,0 +1,4 @@
+language: cpp
+scipt: sh build.sh
+compiler:
+    - gcc
