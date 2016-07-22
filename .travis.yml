@@ -1,5 +1,5 @@
 language: cpp
-scipt:
+script:
     - sh build.sh
     - ./tests/build/bin/tests
 compiler:
