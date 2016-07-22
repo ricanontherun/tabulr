@@ -1,7 +1,6 @@
 # Tabulr [![Build Status](https://travis-ci.org/ricanontherun/tabulr.svg?branch=master)](https://travis-ci.org/ricanontherun/tabulr)
 Generating terminal tables in C++ can be verbose. Tabulr features an simple API for creating terminal tables.
 
-
 ## Include
 ```cpp
 #include <tabulr/tabulr.h>
