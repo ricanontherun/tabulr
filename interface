@@ -1,5 +1,0 @@
-Tabulr::Table table;
-
-Tabulr::Row *row = table.MakeRow();
-
-
