@@ -1,4 +1,6 @@
 language: cpp
-scipt: sh build.sh
+scipt:
+    - sh build.sh
+    - ./tests/build/bin/tests
 compiler:
     - gcc
