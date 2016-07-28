@@ -33,11 +33,8 @@ std::ostream &Row::ToStream(std::ostream &out) const
     for ( auto const &cell_it : this->cells ) {
         cell_it.get()->ToStream(out);
 
-        if ( size == 1 ) {
-            continue;
-        }
-
-        if ( index != size - 1 ) {
+        // We're only going to print a space for cells in between the start and end cells.
+        if ( size != 1 && index != size - 1 ) {
             out << " ";
         }
 
@@ -65,11 +62,8 @@ std::ostream &Row::ToStream(
             cell_it.get()->ToStream(out);
         }
 
-        if ( size == 1 ) {
-            continue;
-        }
-
-        if ( index != size - 1 ) {
+        // We're only going to print a space for cells in between the start and end cells.
+        if ( size != 1 && index != size - 1 ) {
             out << " ";
         }
 

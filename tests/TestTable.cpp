@@ -67,6 +67,8 @@ SCENARIO("Test a table with formatting", "[table] [bdd]")
                 expected << std::setw(20) << std::setprecision(1) << std::setfill(' ') << std::left << "Row 1 Column 1 " << std::setw(50) << std::setprecision(1) << std::right << std::setfill('*') << "Row 1 Column 2" << std::endl;
                 expected << std::setw(20) << std::setprecision(1) << std::setfill(' ') << std::left << "Row 2 Column 1 " << std::setw(50) << std::setprecision(1) << std::right << std::setfill('*') << "Row 2 Column 2" << std::endl;
 
+                std::cout << actual.str();
+                std::cout << expected.str();
             }
         }
     }
