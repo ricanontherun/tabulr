@@ -10,7 +10,9 @@ include_directories(../include)
 set(SOURCES
     TestCell.cpp
     TestRow.cpp
+    TestTable.cpp
     ../source/tabulr/row.cpp
+    ../source/tabulr/table.cpp
 )
 
 add_executable(tests ${SOURCES})
