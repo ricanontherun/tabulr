@@ -44,31 +44,39 @@ SCENARIO("Test a table with formatting", "[table] [bdd]")
         WHEN("We add formatted columns and rows")
         {
             std::vector<Tabulr::ColumnFormat> format = {
-                { .width = 20, .precision = 1, .fill = ' ', .position = Tabulr::POSITION::LEFT },
-                { .width = 50, .precision = 1, .fill = '*', .position = Tabulr::POSITION::RIGHT}
+                { .width = 5, .precision = 1, .fill = '-', .position = Tabulr::POSITION::LEFT },
+                { .width = 5, .precision = 1, .fill = '*', .position = Tabulr::POSITION::RIGHT}
             };
 
             table.SetColumnFormat(format);
 
             Tabulr::Row *row = table.MakeRow();
 
-            row->InsertCell("Row 1 Column 1")->InsertCell("Row 1 Column 2");
+            row->InsertCell("A")->InsertCell("B");
 
             row = table.MakeRow();
 
-            row->InsertCell("Row 2 Column 1")->InsertCell("Row 2 Column 2");
+            row->InsertCell("C")->InsertCell("D");
 
-            THEN("The output should be valid.")
+            THEN("The output should match an output table created the same way manually")
             {
                 std::stringstream actual;
                 actual << table;
 
                 std::stringstream expected;
-                expected << std::setw(20) << std::setprecision(1) << std::setfill(' ') << std::left << "Row 1 Column 1 " << std::setw(50) << std::setprecision(1) << std::right << std::setfill('*') << "Row 1 Column 2" << std::endl;
-                expected << std::setw(20) << std::setprecision(1) << std::setfill(' ') << std::left << "Row 2 Column 1 " << std::setw(50) << std::setprecision(1) << std::right << std::setfill('*') << "Row 2 Column 2" << std::endl;
 
-                std::cout << actual.str();
-                std::cout << expected.str();
+                // First row, first column
+                expected << std::setw(format[0].width) << std::setprecision(1) << std::setfill(format[0].fill) << std::left << "A";
+
+                // First row, second column.
+                expected << std::setw(format[1].width) << std::setprecision(1) << std::right << std::setfill(format[1].fill) << "B" << std::endl;
+
+                // Second row
+                expected << std::setw(format[0].width) << std::setprecision(1) << std::setfill(format[0].fill) << std::left << "C";
+
+                expected << std::setw(format[1].width)  << std::setprecision(1) << std::right << std::setfill(format[1].fill) << "D" << std::endl;
+
+                REQUIRE(expected.str() == actual.str());
             }
         }
     }

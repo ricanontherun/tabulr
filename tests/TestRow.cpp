@@ -59,3 +59,8 @@ SCENARIO("Plain row", "[row] [bdd]")
     }
 }
 
+SCENARIO("Formatted row")
+{
+
+}
+
