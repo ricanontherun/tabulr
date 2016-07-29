@@ -59,8 +59,11 @@ SCENARIO("Plain row", "[row] [bdd]")
     }
 }
 
-SCENARIO("Formatted row")
+SCENARIO("Formatted row", "[row] [bdd]")
 {
+    GIVEN("A table row")
+    {
 
+    }
 }
 

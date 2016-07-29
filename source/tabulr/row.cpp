@@ -55,18 +55,15 @@ std::ostream &Row::ToStream(
 
     for ( auto const &cell_it : this->cells ) {
         // We need to determine if there is a associated configuration for this column.
-        bool print_space = true;
         if ( index < config_size ) {
             ColumnFormat format = column_config[index];
             cell_it.get()->ToStream(out, format);
-
-            print_space = !format.width;
         } else {
             cell_it.get()->ToStream(out);
         }
 
         // We're only going to print a space for cells in between the start and end cells.
-        if ( size != 1 && index != size - 1 && print_space ) {
+        if ( size != 1 && index != size - 1 ) {
             out << " ";
         }
 
