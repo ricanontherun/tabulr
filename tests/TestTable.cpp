@@ -26,8 +26,8 @@ SCENARIO("Test a table with no formatting.", "[table], [bdd]")
                 actual << table;
 
                 std::stringstream expected;
-                expected << "Row 1 Column 1 " << "Row 1 Column 2" << std::endl;
-                expected << "Row 2 Column 1 " << "Row 2 Column 2" << std::endl;
+                expected << "Row 1 Column 1 " << "Row 1 Column 2\n";
+                expected << "Row 2 Column 1 " << "Row 2 Column 2\n";
 
                 REQUIRE(actual.str() == expected.str());
             }
@@ -66,13 +66,13 @@ SCENARIO("Test a table with formatting", "[table] [bdd]")
                 std::stringstream expected;
 
                 // First row, first column
-                expected << std::setw(format[0].width) << std::setprecision(1) << std::setfill(format[0].fill) << std::left << "A";
+                expected << std::setw(format[0].width) << std::setprecision(1) << std::setfill(format[0].fill) << std::left << "A" << " ";
 
                 // First row, second column.
                 expected << std::setw(format[1].width) << std::setprecision(1) << std::right << std::setfill(format[1].fill) << "B" << std::endl;
 
                 // Second row
-                expected << std::setw(format[0].width) << std::setprecision(1) << std::setfill(format[0].fill) << std::left << "C";
+                expected << std::setw(format[0].width) << std::setprecision(1) << std::setfill(format[0].fill) << std::left << "C" << " ";
 
                 expected << std::setw(format[1].width)  << std::setprecision(1) << std::right << std::setfill(format[1].fill) << "D" << std::endl;
 
