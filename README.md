@@ -1,4 +1,4 @@
-# Tabulr
+# Tabulr [![Build Status](https://travis-ci.org/ricanontherun/tabulr.svg?branch=master)](https://travis-ci.org/ricanontherun/tabulr)
 ## Basic Usage
 #### Creating a table
 ```cpp
