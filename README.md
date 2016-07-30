@@ -1,4 +1,8 @@
 # Tabulr [![Build Status](https://travis-ci.org/ricanontherun/tabulr.svg?branch=master)](https://travis-ci.org/ricanontherun/tabulr)
+
+## Dependencies
+* C++14
+
 ## Basic Usage
 #### Creating a table
 ```cpp
@@ -7,7 +11,8 @@ Tabulr::Table my_table;
 #### Adding structure
 Rows are displayed in the order they are created, top to bottom.
 ```cpp
-    // Create a new row. Note: Rows are managed by the table via smart pointers, don't worry about them.
+    // Create a new row.
+    // Note: Rows are managed by the table via smart pointers, don't worry about them.
     Tabulr::Row *first_row = my_table.MakeRow();
 ```
 Cells are added to rows and are displayed in the order they are added, left to right. Spaces are printed between cells
@@ -27,5 +32,5 @@ automatically.
     
 ```
 #### Fomatting
-Tabulr provides formatting in the form of Tabulr::ColumnFormats
-
+Tabulr provides formatting in the form of Tabulr::ColumnFormats, more information coming soon.
+For now, check out main.cpp for usage examples.
