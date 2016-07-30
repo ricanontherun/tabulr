@@ -32,5 +32,5 @@ automatically.
     
 ```
 #### Fomatting
-Tabulr provides formatting in the form of Tabulr::ColumnFormats
+Tabulr provides formatting in the form of Tabulr::ColumnFormats, more information coming soon.
 
