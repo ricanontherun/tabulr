@@ -19,7 +19,12 @@
 namespace Tabulr
 {
 
-Table::Table()
+Table::Table() : num_columns(0)
+{
+
+}
+
+Table::Table(std::size_t n) : num_columns(n)
 {
 
 }
@@ -33,7 +38,9 @@ Table::Table()
 Row *Table::MakeRow()
 {
     // Add a new row.
-    this->rows.push_back(std::make_unique<Row>());
+    this->rows.push_back(
+        std::make_unique<Row>(this->GetNumberOfColumns())
+    );
 
     // Return a pointer to the row we just created.
     return this->rows.back().get();
@@ -68,6 +75,16 @@ std::ostream &operator<<(std::ostream &out, const Table &table)
     }
 
     return out;
+}
+
+std::size_t Table::GetNumberOfColumns() const
+{
+    if ( this->rows.size() == 0 )
+    {
+        return this->num_columns;
+    }
+
+    return this->num_columns;
 }
 
 }

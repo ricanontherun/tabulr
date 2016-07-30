@@ -28,6 +28,8 @@ class Table
     public:
         Table();
 
+        Table(std::size_t);
+
         /**
          * Make a new row which is managed interally by the table.
          * The point returned by this function is managed interally, do not deleted it.
@@ -56,7 +58,12 @@ class Table
         friend std::ostream &operator<<(std::ostream &, const Table &);
     private:
         ColumnFormatVector column_format;
+
+        std::size_t num_columns;
+
         std::vector<std::unique_ptr<Row>> rows;
+
+        std::size_t GetNumberOfColumns() const;
 };
 
 } // Namespace Tabulr

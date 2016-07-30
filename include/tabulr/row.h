@@ -30,6 +30,8 @@ class Row
     public:
         Row();
 
+        Row(std::size_t);
+
         /**
          * Insert a new, managed cell into the row.
          *

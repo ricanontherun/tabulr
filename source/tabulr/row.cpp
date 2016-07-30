@@ -25,6 +25,11 @@ Row::Row()
 
 }
 
+Row::Row(std::size_t size)
+{
+    this->cells.reserve(size);
+}
+
 std::ostream &Row::ToStream(std::ostream &out) const
 {
     size_t size = this->cells.size();
