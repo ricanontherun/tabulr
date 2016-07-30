@@ -63,7 +63,25 @@ SCENARIO("Formatted row", "[row] [bdd]")
 {
     GIVEN("A table row")
     {
+        Tabulr::Row row;
 
+        WHEN("We add some formatted columns")
+        {
+            std::vector<Tabulr::ColumnFormat> format = {
+                { .width = 1, .precision = 0, .fill = ' ', .position = Tabulr::POSITION::LEFT },
+                { .width = 10, .precision = 3, .fill = ' ', .position = Tabulr::POSITION::LEFT}
+            };
+
+            row.InsertCell("1")->InsertCell(311498.13);
+            std::stringstream actual;
+            row.ToStream(actual, format);
+
+            // Expected.
+            std::stringstream expected;
+            expected << std::setw(format[0].width) << "1" << " " << std::setw(format[1].width) << std::fixed << std::setprecision(format[1].precision) << 311498.13;
+
+            REQUIRE(actual.str() == expected.str());
+        }
     }
 }
 
