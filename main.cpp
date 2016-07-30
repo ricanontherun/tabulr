@@ -23,7 +23,7 @@ int main()
     // Make a new table.
     Tabulr::Table table;
 
-    std::vector<struct Tabulr::ColumnFormat> format;
+    Tabulr::ColumnFormatVector format;
 
     Tabulr::ColumnFormat col_quarter = {
         .width = 10, .precision = 1, .fill = ' ', .position = Tabulr::POSITION::LEFT

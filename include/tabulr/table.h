@@ -44,13 +44,18 @@ class Table
          *
          * @return
          */
-        Table *SetColumnFormat(std::vector<struct ColumnFormat>);
+        Table *SetColumnFormat(ColumnFormatVector);
 
-        const std::vector<struct ColumnFormat> &GetColumnFormat() const;
+        /**
+         * Retrieve the column format for this table.
+         *
+         * @return
+         */
+        const ColumnFormatVector &GetColumnFormat() const;
 
         friend std::ostream &operator<<(std::ostream &, const Table &);
     private:
-        std::vector<struct ColumnFormat> column_config;
+        ColumnFormatVector column_format;
         std::vector<std::unique_ptr<Row>> rows;
 };
 

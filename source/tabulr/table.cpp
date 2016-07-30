@@ -47,16 +47,16 @@ Row *Table::MakeRow()
  *
  * @return
  */
-Table *Table::SetColumnFormat(std::vector<struct ColumnFormat> config)
+Table *Table::SetColumnFormat(ColumnFormatVector format)
 {
-    this->column_config = config;
+    this->column_format = format;
 
     return this;
 }
 
-const std::vector<ColumnFormat> &Table::GetColumnFormat() const
+const ColumnFormatVector &Table::GetColumnFormat() const
 {
-    return this->column_config;
+    return this->column_format;
 }
 
 std::ostream &operator<<(std::ostream &out, const Table &table)

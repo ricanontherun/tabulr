@@ -43,7 +43,7 @@ class Row
         std::ostream &ToStream(std::ostream &) const;
         std::ostream &ToStream(
                 std::ostream &,
-                const std::vector<ColumnFormat> &
+                const ColumnFormatVector&
         ) const;
     private:
         std::vector<std::unique_ptr<AbstractCell>> cells;

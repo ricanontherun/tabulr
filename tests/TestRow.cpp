@@ -67,7 +67,7 @@ SCENARIO("Formatted row", "[row] [bdd]")
 
         WHEN("We add some formatted columns")
         {
-            std::vector<Tabulr::ColumnFormat> format = {
+            Tabulr::ColumnFormatVector format = {
                 { .width = 1, .precision = 0, .fill = ' ', .position = Tabulr::POSITION::LEFT },
                 { .width = 10, .precision = 3, .fill = ' ', .position = Tabulr::POSITION::LEFT}
             };

@@ -44,7 +44,7 @@ SCENARIO("Test a table with formatting", "[table] [bdd]")
         WHEN("We add formatted columns and rows")
         {
             //Trying to represent all of the different formatting options.
-            std::vector<Tabulr::ColumnFormat> format = {
+            Tabulr::ColumnFormatVector format = {
                 { .width = 5, .precision = 2, .fill = '-', .position = Tabulr::POSITION::LEFT },
                 { .width = 6, .precision = 3, .fill = '*', .position = Tabulr::POSITION::RIGHT}
             };

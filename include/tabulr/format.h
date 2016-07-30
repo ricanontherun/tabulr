@@ -35,6 +35,9 @@ struct ColumnFormat
     POSITION position;
 };
 
+// For convenience
+typedef std::vector<struct ColumnFormat> ColumnFormatVector;
+
 }
 
 #endif

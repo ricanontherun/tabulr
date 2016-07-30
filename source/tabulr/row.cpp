@@ -46,17 +46,17 @@ std::ostream &Row::ToStream(std::ostream &out) const
 
 std::ostream &Row::ToStream(
         std::ostream &out,
-        const std::vector<ColumnFormat> &column_config
+        const ColumnFormatVector &column_format
 ) const
 {
     size_t index = 0;
     size_t size = this->cells.size();
-    uint32_t config_size = column_config.size();
+    uint32_t config_size = column_format.size();
 
     for ( auto const &cell_it : this->cells ) {
         // We need to determine if there is a associated configuration for this column.
         if ( index < config_size ) {
-            ColumnFormat format = column_config[index];
+            ColumnFormat format = column_format[index];
             cell_it.get()->ToStream(out, format);
         } else {
             cell_it.get()->ToStream(out);
