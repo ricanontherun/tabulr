@@ -3,6 +3,7 @@
 
 ## Dependencies
 * C++14
+* cmake >= 2.8.7
 
 ## Tests
 To run the test suite:
