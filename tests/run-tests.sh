@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Make sure the build and build/bin directories are present.
 if [ ! -d "build" ]; then
     mkdir build
 fi
@@ -14,4 +15,4 @@ cmake ..
 
 make
 
-./bin/tests
+./bin/tests $@

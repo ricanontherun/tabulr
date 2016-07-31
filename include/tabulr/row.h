@@ -52,10 +52,10 @@ class Row
         ) const;
 
         /**
-         * Get the number of cells in this row.
+         * Return the capacity() of this row
          * To be honest, this is here to facilitate testing.
          */
-        std::size_t GetCellCount() const;
+        std::size_t Capacity() const;
     private:
         std::vector<std::unique_ptr<AbstractCell>> cells;
 };

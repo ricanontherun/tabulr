@@ -4,6 +4,13 @@
 ## Dependencies
 * C++14
 
+## Tests
+To run the test suite:
+```sh
+cd tests
+sh run-tests.sh
+```
+
 ## Basic Usage
 #### Creating a table
 ```cpp

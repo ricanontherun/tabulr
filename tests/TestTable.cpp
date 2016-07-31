@@ -6,23 +6,34 @@
 
 TEST_CASE("Table unit test", "[table] [unit]")
 {
-    SECTION("Test that a table rows are defaulted to having zero cells.")
+    SECTION("A table's rows should default to capacity of zero")
     {
         Tabulr::Table table;
 
         Tabulr::Row *row = table.MakeRow();
 
-        REQUIRE(row->GetCellCount() == 0);
+        REQUIRE(row->Capacity() == 0);
+
+        Tabulr::Row *another_row = table.MakeRow();
+
+        REQUIRE(another_row->Capacity() == 0);
     }
 
-    SECTION("Test that, when give a size constructor, table rows have that many columns by default.")
+    SECTION("When a column argument is provided, the capacity of table row's should reflect it.")
     {
-        Tabulr::Table table(10);
+        std::size_t columns = 10;
 
-        Tabulr::Row *first_row = table.MakeRow();
+        Tabulr::Table table(columns);
 
-        REQUIRE(first_row->GetCellCount() == 10);
+        Tabulr::Row *row = table.MakeRow();
+
+        REQUIRE(row->Capacity() == columns);
+
+        Tabulr::Row *another_row = table.MakeRow();
+
+        REQUIRE(another_row->Capacity() == columns);
     }
+
 }
 
 SCENARIO("Test a table with no formatting.", "[table], [bdd]")

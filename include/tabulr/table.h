@@ -26,9 +26,25 @@ namespace Tabulr
 class Table
 {
     public:
+        /**
+         * Default constructor
+         */
         Table();
 
-        Table(std::size_t);
+        /**
+         * Construct with the table's projected width (columns).
+         *
+         * @param num_columns
+         */
+        Table(std::size_t num_columns);
+
+        /**
+         * Construct with the table's projected dimensions.
+         *
+         * @param num_columns
+         * @param num_rows
+         */
+        Table(std::size_t num_columns, std::size_t num_rows);
 
         /**
          * Make a new row which is managed interally by the table.
@@ -61,9 +77,11 @@ class Table
 
         std::size_t num_columns;
 
+        std::size_t num_rows;
+
         std::vector<std::unique_ptr<Row>> rows;
 
-        std::size_t GetNumberOfColumns() const;
+        std::size_t NumberOfColumns() const;
 };
 
 } // Namespace Tabulr

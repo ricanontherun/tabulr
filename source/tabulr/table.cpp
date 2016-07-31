@@ -19,13 +19,23 @@
 namespace Tabulr
 {
 
-Table::Table() : num_columns(0)
+Table::Table() : num_columns(0), num_rows(0)
 {
 
 }
 
-Table::Table(std::size_t n) : num_columns(n)
+Table::Table(
+    std::size_t num_columns
+) : num_columns(num_columns), num_rows(0)
 {
+}
+
+Table::Table(
+    std::size_t num_columns,
+    std::size_t num_rows
+) : num_columns(num_columns), num_rows(num_rows)
+{
+    this->rows.reserve(num_rows);
 }
 
 /**
@@ -36,9 +46,8 @@ Table::Table(std::size_t n) : num_columns(n)
  */
 Row *Table::MakeRow()
 {
-    // Add a new row.
     this->rows.push_back(
-        std::make_unique<Row>(this->GetNumberOfColumns())
+        std::make_unique<Row>(this->NumberOfColumns())
     );
 
     // Return a pointer to the row we just created.
@@ -70,23 +79,23 @@ std::ostream &operator<<(std::ostream &out, const Table &table)
     for ( auto const &row_it : table.rows ) {
         row_it->ToStream(out, table.GetColumnFormat());
 
-        out << std::endl;
+        out << "\n";
     }
 
     return out;
 }
 
-std::size_t Table::GetNumberOfColumns() const
+std::size_t Table::NumberOfColumns() const
 {
     if ( this->num_columns != 0 )
     {
         return this->num_columns;
     }
 
-
-    if ( this->rows.size() != 0 )
+    if ( this->rows.size() >= 1 )
     {
-        return this->rows.front()->cells.size();
+        // Get the number of columns in the first row.
+        return this->rows.front()->Capacity();
     }
 
     return 0;
