@@ -13,8 +13,16 @@ sh run-tests.sh
 
 ## Basic Usage
 #### Creating a table
+The more information you give a table, the smarter it will allocate memory.
 ```cpp
+// Default constructor
 Tabulr::Table my_table;
+
+// Provide number of columns, faster than the default constructor.
+Tabulr::Table four_column_table(4);
+
+// Provide number of columns and rows. 30% faster than default, on average.
+Tabulr::Table four_column_three_row_table(4,3);
 ```
 #### Adding structure
 Rows are displayed in the order they are created, top to bottom.
