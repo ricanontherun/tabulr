@@ -26,7 +26,6 @@ Table::Table() : num_columns(0)
 
 Table::Table(std::size_t n) : num_columns(n)
 {
-
 }
 
 /**
@@ -79,12 +78,18 @@ std::ostream &operator<<(std::ostream &out, const Table &table)
 
 std::size_t Table::GetNumberOfColumns() const
 {
-    if ( this->rows.size() == 0 )
+    if ( this->num_columns != 0 )
     {
         return this->num_columns;
     }
 
-    return this->num_columns;
+
+    if ( this->rows.size() != 0 )
+    {
+        return this->rows.front()->cells.size();
+    }
+
+    return 0;
 }
 
 }

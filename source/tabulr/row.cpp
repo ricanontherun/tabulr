@@ -22,12 +22,10 @@ namespace Tabulr
 
 Row::Row()
 {
-
 }
 
-Row::Row(std::size_t size)
+Row::Row(std::size_t size) : cells(size)
 {
-    this->cells.reserve(size);
 }
 
 std::ostream &Row::ToStream(std::ostream &out) const
@@ -76,6 +74,11 @@ std::ostream &Row::ToStream(
     }
 
     return out;
+}
+
+std::size_t Row::GetCellCount() const
+{
+    return this->cells.size();
 }
 
 }

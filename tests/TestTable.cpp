@@ -4,6 +4,27 @@
 #include <iostream>
 #include <tabulr/tabulr.h>
 
+TEST_CASE("Table unit test", "[table] [unit]")
+{
+    SECTION("Test that a table rows are defaulted to having zero cells.")
+    {
+        Tabulr::Table table;
+
+        Tabulr::Row *row = table.MakeRow();
+
+        REQUIRE(row->GetCellCount() == 0);
+    }
+
+    SECTION("Test that, when give a size constructor, table rows have that many columns by default.")
+    {
+        Tabulr::Table table(10);
+
+        Tabulr::Row *first_row = table.MakeRow();
+
+        REQUIRE(first_row->GetCellCount() == 10);
+    }
+}
+
 SCENARIO("Test a table with no formatting.", "[table], [bdd]")
 {
     GIVEN("A table")

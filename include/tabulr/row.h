@@ -27,6 +27,8 @@ namespace Tabulr
 
 class Row
 {
+    friend class Table;
+
     public:
         Row();
 
@@ -43,10 +45,17 @@ class Row
         Row *InsertCell(T content);
 
         std::ostream &ToStream(std::ostream &) const;
+
         std::ostream &ToStream(
                 std::ostream &,
                 const ColumnFormatVector&
         ) const;
+
+        /**
+         * Get the number of cells in this row.
+         * To be honest, this is here to facilitate testing.
+         */
+        std::size_t GetCellCount() const;
     private:
         std::vector<std::unique_ptr<AbstractCell>> cells;
 };
