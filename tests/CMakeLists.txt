@@ -11,6 +11,7 @@ set(SOURCES
     TestCell.cpp
     TestRow.cpp
     TestTable.cpp
+    TestFormat.cpp
     ../source/tabulr/row.cpp
     ../source/tabulr/table.cpp
 )

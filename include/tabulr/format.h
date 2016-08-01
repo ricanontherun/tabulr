@@ -27,16 +27,17 @@ enum class POSITION : std::uint8_t
     RIGHT
 };
 
-struct ColumnFormat
+class ColumnFormat
 {
-    int width = 0;
-    int precision = 0;
-    char fill = ' ';
-    POSITION position;
-};
+    public:
+        int width = 0;
+        int precision = 0;
+        char fill = ' ';
+        POSITION position;
+}
 
 // For convenience
-typedef std::vector<struct ColumnFormat> ColumnFormatVector;
+typedef std::vector<ColumnFormat> ColumnFormatVector;
 
 }
 
