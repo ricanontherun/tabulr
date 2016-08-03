@@ -54,7 +54,7 @@ template <class T>
 std::ostream &Cell<T>::ToStream(std::ostream &out, const ColumnFormat &format) const
 {
     if ( format.width ) {
-        out << std::setw(format.width);
+        out << std::setw(format.GetWidth());
     }
 
     if ( format.fill ) {

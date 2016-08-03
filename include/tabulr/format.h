@@ -34,7 +34,12 @@ class ColumnFormat
         int precision = 0;
         char fill = ' ';
         POSITION position;
-}
+
+        ColumnFormat() : width(0), precision(0), fill(' ') {}
+
+        ColumnFormat *SetWidth(int width) { this->width = width; return this; }
+        int GetWidth() const { return this->width; }
+};
 
 // For convenience
 typedef std::vector<ColumnFormat> ColumnFormatVector;

@@ -106,7 +106,7 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
         WHEN("We output the cell with left positioning")
         {
             Tabulr::ColumnFormat format;
-            format.width = 100;
+            format.SetWidth(100);
             format.position = Tabulr::POSITION::LEFT;
 
             std::stringstream expected;
@@ -126,7 +126,7 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
         WHEN("We output the cell with right positioning")
         {
             Tabulr::ColumnFormat format;
-            format.width = 100;
+            format.SetWidth(100);
             format.position = Tabulr::POSITION::RIGHT;
 
             std::stringstream expected;
@@ -146,7 +146,7 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
         WHEN("We output the cell with internal positioning")
         {
             Tabulr::ColumnFormat format;
-            format.width = 100;
+            format.SetWidth(100);
             format.position = Tabulr::POSITION::INTERNAL;
 
             std::stringstream expected;
