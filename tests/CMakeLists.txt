@@ -14,6 +14,7 @@ set(SOURCES
     TestFormat.cpp
     ../source/tabulr/row.cpp
     ../source/tabulr/table.cpp
+    ../source/tabulr/format.cpp
 )
 
 add_executable(tests ${SOURCES})

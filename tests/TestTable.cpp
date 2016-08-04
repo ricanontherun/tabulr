@@ -75,11 +75,16 @@ SCENARIO("Test a table with formatting", "[table] [bdd]")
 
         WHEN("We add formatted columns and rows")
         {
-            //Trying to represent all of the different formatting options.
-            Tabulr::ColumnFormatVector format = {
-                { .width = 5, .precision = 2, .fill = '-', .position = Tabulr::POSITION::LEFT },
-                { .width = 6, .precision = 3, .fill = '*', .position = Tabulr::POSITION::RIGHT}
-            };
+            Tabulr::ColumnFormatVector format;
+
+            Tabulr::ColumnFormat one;
+            one.SetWidth(5)->SetPrecision(2)->SetFill('-');
+
+            Tabulr::ColumnFormat two;
+            two.SetWidth(6)->SetPrecision(3)->SetFill('*');
+
+            format.push_back(one);
+            format.push_back(two);
 
             table.SetColumnFormat(format);
 

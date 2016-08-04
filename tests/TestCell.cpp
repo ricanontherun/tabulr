@@ -60,10 +60,10 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
         WHEN("We output the cell into a stream with a width of 100")
         {
             Tabulr::ColumnFormat format;
-            format.width = 100;
+            format.SetWidth(100);
 
             std::stringstream expected;
-            expected << std::setw(format.width);
+            expected << std::setw(format.GetWidth());
             expected << "Christian Roman";
 
             std::stringstream actual;
@@ -83,10 +83,10 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
         WHEN("We output the cell into a string with 3 decimal points of precision")
         {
             Tabulr::ColumnFormat format;
-            format.precision = 3;
+            format.SetPrecision(3);
 
             std::stringstream expected;
-            expected << std::fixed << std::setprecision(3);
+            expected << std::fixed << std::setprecision(format.GetPrecision());
             expected << 1234.45;
 
             std::stringstream actual;
@@ -106,12 +106,11 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
         WHEN("We output the cell with left positioning")
         {
             Tabulr::ColumnFormat format;
-            format.SetWidth(100);
-            format.position = Tabulr::POSITION::LEFT;
+            format.SetWidth(100)->SetPosition(Tabulr::POSITION::LEFT);
 
             std::stringstream expected;
             expected << std::left;
-            expected << std::setw(format.width);
+            expected << std::setw(format.GetWidth());
             expected << -1234.56;
 
             std::stringstream actual;
@@ -126,12 +125,11 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
         WHEN("We output the cell with right positioning")
         {
             Tabulr::ColumnFormat format;
-            format.SetWidth(100);
-            format.position = Tabulr::POSITION::RIGHT;
+            format.SetWidth(100)->SetPosition(Tabulr::POSITION::RIGHT);
 
             std::stringstream expected;
             expected << std::right;
-            expected << std::setw(format.width);
+            expected << std::setw(format.GetWidth());
             expected << -1234.56;
 
             std::stringstream actual;
@@ -146,12 +144,11 @@ SCENARIO("Cell tests, various formatting tests.", "[cell] [bdd]")
         WHEN("We output the cell with internal positioning")
         {
             Tabulr::ColumnFormat format;
-            format.SetWidth(100);
-            format.position = Tabulr::POSITION::INTERNAL;
+            format.SetWidth(100)->SetPosition(Tabulr::POSITION::INTERNAL);
 
             std::stringstream expected;
             expected << std::internal;
-            expected << std::setw(format.width);
+            expected << std::setw(format.GetWidth());
             expected << -1234.56;
 
             std::stringstream actual;

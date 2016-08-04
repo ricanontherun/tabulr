@@ -67,10 +67,16 @@ SCENARIO("Formatted row", "[row] [bdd]")
 
         WHEN("We add some formatted columns")
         {
-            Tabulr::ColumnFormatVector format = {
-                { .width = 1, .precision = 0, .fill = ' ', .position = Tabulr::POSITION::LEFT },
-                { .width = 10, .precision = 3, .fill = ' ', .position = Tabulr::POSITION::LEFT}
-            };
+            Tabulr::ColumnFormatVector format;
+
+            Tabulr::ColumnFormat one;
+            one.SetWidth(1)->SetPrecision(0)->SetFill(' ');
+
+            Tabulr::ColumnFormat two;
+            two.SetWidth(10)->SetPrecision(3)->SetFill(' ');
+
+            format.push_back(one);
+            format.push_back(two);
 
             row.InsertCell("1")->InsertCell(311498.13);
             std::stringstream actual;

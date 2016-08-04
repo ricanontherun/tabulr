@@ -15,6 +15,7 @@
 #ifndef TABULR_FORMAT_H
 #define TABULR_FORMAT_H
 
+#include <vector>
 #include <cstdint>
 
 namespace Tabulr
@@ -35,10 +36,19 @@ class ColumnFormat
         char fill = ' ';
         POSITION position;
 
-        ColumnFormat() : width(0), precision(0), fill(' ') {}
+        ColumnFormat();
 
-        ColumnFormat *SetWidth(int width) { this->width = width; return this; }
-        int GetWidth() const { return this->width; }
+        ColumnFormat *SetWidth(int width);
+        int GetWidth() const;
+
+        ColumnFormat *SetPrecision(int precision);
+        int GetPrecision() const;
+
+        ColumnFormat *SetFill(char fill);
+        char GetFill() const;
+
+        ColumnFormat *SetPosition(POSITION position);
+        POSITION GetPosition() const;\qa
 };
 
 // For convenience
