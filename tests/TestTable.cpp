@@ -78,7 +78,7 @@ SCENARIO("Test a table with formatting", "[table] [bdd]")
             Tabulr::ColumnFormatVector format;
 
             Tabulr::ColumnFormat one;
-            one.SetWidth(5)->SetPrecision(2)->SetFill('-');
+            one.SetWidth(5)->SetPrecision(2)->SetFill('-')->SetPosition(Tabulr::POSITION::LEFT);
 
             Tabulr::ColumnFormat two;
             two.SetWidth(6)->SetPrecision(3)->SetFill('*');
@@ -104,15 +104,15 @@ SCENARIO("Test a table with formatting", "[table] [bdd]")
                 std::stringstream expected;
 
                 // First row, first column
-                expected << std::setw(format[0].width) << std::setprecision(2) << std::setfill(format[0].fill) << std::left << "A" << " ";
+                expected << std::setw(format[0].GetWidth()) << std::setprecision(2) << std::setfill(format[0].GetFill()) << std::left << "A" << " ";
 
                 // First row, second column.
-                expected << std::setw(format[1].width) << std::setprecision(3) << std::fixed << std::right << std::setfill(format[1].fill) << 12.34 << std::endl;
+                expected << std::setw(format[1].GetWidth()) << std::setprecision(3) << std::fixed << std::right << std::setfill(format[1].GetFill()) << 12.34 << std::endl;
 
                 // Second row
-                expected << std::setw(format[0].width) << std::setprecision(2) << std::left << std::setfill(format[0].fill) << "C" << " ";
+                expected << std::setw(format[0].GetWidth()) << std::setprecision(2) << std::left << std::setfill(format[0].GetFill()) << "C" << " ";
 
-                expected << std::setw(format[1].width) << std::setprecision(3) << std::fixed << std::right << std::setfill(format[1].fill) << 56.78 << std::endl;
+                expected << std::setw(format[1].GetWidth()) << std::setprecision(3) << std::fixed << std::right << std::setfill(format[1].GetFill()) << 56.78 << std::endl;
 
                 REQUIRE(actual.str() == expected.str());
             }
