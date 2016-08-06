@@ -84,7 +84,7 @@ SCENARIO("Formatted row", "[row] [bdd]")
 
             // Expected.
             std::stringstream expected;
-            expected << std::setw(format[0].width) << "1" << " " << std::setw(format[1].width) << std::fixed << std::setprecision(format[1].precision) << 311498.13;
+            expected << std::setw(format[0].GetWidth()) << "1" << " " << std::setw(format[1].GetWidth()) << std::fixed << std::setprecision(format[1].GetPrecision()) << 311498.13;
 
             REQUIRE(actual.str() == expected.str());
         }

@@ -53,23 +53,21 @@ std::ostream &Cell<T>::ToStream(std::ostream &out) const
 template <class T>
 std::ostream &Cell<T>::ToStream(std::ostream &out, const ColumnFormat &format) const
 {
-    if ( format.width ) {
+    if ( format.GetWidth() != 0 ) {
         out << std::setw(format.GetWidth());
     }
 
-    if ( format.fill ) {
-        out << std::setfill(format.fill);
-    }
+    out << std::setfill(format.GetFill());
 
-    if ( format.precision != 0 ) {
+    if ( format.GetPrecision() != 0 ) {
         out << std::fixed;
-        out << std::setprecision(format.precision);
+        out << std::setprecision(format.GetPrecision());
     }
 
-    std::uint8_t position = static_cast<std::uint8_t>(format.position);
+    std::uint8_t position = static_cast<std::uint8_t>(format.GetPosition());
 
     if ( position ) {
-        switch ( format.position ) {
+        switch ( format.GetPosition() ) {
             case POSITION::LEFT:
                 out << std::left;
                 break;
