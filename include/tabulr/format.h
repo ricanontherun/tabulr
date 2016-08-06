@@ -48,7 +48,7 @@ class ColumnFormat
         char GetFill() const;
 
         ColumnFormat *SetPosition(POSITION position);
-        POSITION GetPosition() const;\qa
+        POSITION GetPosition() const;
 };
 
 // For convenience
