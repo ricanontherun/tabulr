@@ -1,8 +1,9 @@
 # Tabulr
-[![Build Status](https://travis-ci.org/ricanontherun/tabulr.svg?branch=dev)](https://travis-ci.org/ricanontherun/tabulr)
+[![Build Status](https://travis-ci.org/ricanontherun/tabulr.svg?branch=master)](https://travis-ci.org/ricanontherun/tabulr)
 
 ## Dependencies
 * C++14
+* cmake >= 2.8.7
 
 ## Tests
 To run the test suite:
