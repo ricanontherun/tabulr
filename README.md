@@ -49,5 +49,20 @@ automatically.
     
 ```
 #### Fomatting
-Tabulr provides formatting in the form of Tabulr::ColumnFormats, more information coming soon.
-For now, check out main.cpp for usage examples.
+Tabulr provides formatting in the form of Tabulr::ColumnFormat vectors. Each vector element represents a the formatting for all
+cells in that colunm. ColumnFormat objects specify things like a column's width, fill, precision and position.
+```cpp
+    // Create a ColumnFormatVector
+    Tabulr::ColumnFormatVector format;
+    
+    // Add a column format of width 10 and precision 2.
+    format.push_back(Tabulr::ColumnFormat(10, 2));
+    
+    // Add another column format with just a width of 20
+    format.push_back(Tabulr::ColunmFormat(100));
+    
+    // Set the table's format vector
+    table.SetColumnFormat(format);
+```
+## More Documentation on the way
+
