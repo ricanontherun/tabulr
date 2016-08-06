@@ -30,14 +30,13 @@ enum class POSITION : std::uint8_t
 
 class ColumnFormat
 {
-    private:
-        int width = 0;
-        int precision = 0;
-        char fill = ' ';
-        POSITION position;
-
     public:
         ColumnFormat();
+
+        ColumnFormat(int width);
+        ColumnFormat(int width, int precision);
+        ColumnFormat(int width, int precision, char fill);
+        ColumnFormat(int width, int precision, char fill, POSITION position);
 
         ColumnFormat *SetWidth(int width);
         int GetWidth() const;
@@ -50,6 +49,18 @@ class ColumnFormat
 
         ColumnFormat *SetPosition(POSITION position);
         POSITION GetPosition() const;
+
+    private:
+        // Field width
+        int width;
+
+        // Decimal precision
+        int precision;
+
+        // Fill character
+        char fill;
+
+        POSITION position;
 };
 
 // For convenience

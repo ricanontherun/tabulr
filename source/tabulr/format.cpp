@@ -18,7 +18,32 @@
 namespace Tabulr
 {
 
-ColumnFormat::ColumnFormat() : width(0), precision(0), fill(' ')
+ColumnFormat::ColumnFormat()
+: width(0), precision(0), fill(' '), position(POSITION::RIGHT)
+{
+
+}
+
+ColumnFormat::ColumnFormat(int width)
+: width(width), precision(0), fill(' '), position(POSITION::RIGHT)
+{
+
+}
+
+ColumnFormat::ColumnFormat(int width, int precision)
+: width(width), precision(precision), fill(' '), position(POSITION::RIGHT)
+{
+
+}
+
+ColumnFormat::ColumnFormat(int width, int precision, char fill)
+: width(width), precision(precision), fill(fill), position(POSITION::RIGHT)
+{
+
+}
+
+ColumnFormat::ColumnFormat(int width, int precision, char fill, POSITION position)
+: width(width), precision(precision), fill(fill), position(position)
 {
 
 }
