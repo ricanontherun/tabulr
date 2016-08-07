@@ -32,6 +32,13 @@ class Table
         Table();
 
         /**
+         * Copy Constructor
+         *
+         * @param
+         */
+        Table(const Table &);
+
+        /**
          * Construct with the table's projected width (columns).
          *
          * @param num_columns

@@ -24,6 +24,11 @@ Table::Table() : num_columns(0), num_rows(0)
 
 }
 
+Table::Table(const Table &table)
+: num_columns(table.num_columns), num_rows(table.num_rows)
+{
+}
+
 Table::Table(
     std::size_t num_columns
 ) : num_columns(num_columns), num_rows(0)

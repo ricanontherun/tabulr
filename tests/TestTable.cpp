@@ -118,4 +118,56 @@ SCENARIO("Test a table with formatting", "[table] [bdd]")
             }
         }
     }
+
+    GIVEN("A table")
+    {
+        Tabulr::Table table;
+
+        WHEN("We add formatted columns and rows, and construct from another table")
+        {
+            Tabulr::ColumnFormatVector format;
+
+            Tabulr::ColumnFormat one;
+            one.SetWidth(5)->SetPrecision(2)->SetFill('-')->SetPosition(Tabulr::POSITION::LEFT);
+
+            Tabulr::ColumnFormat two;
+            two.SetWidth(6)->SetPrecision(3)->SetFill('*');
+
+            format.push_back(one);
+            format.push_back(two);
+
+            table.SetColumnFormat(format);
+
+            Tabulr::Row *row = table.MakeRow();
+
+            row->InsertCell("A")->InsertCell(12.34);
+
+            row = table.MakeRow();
+
+            row->InsertCell("C")->InsertCell(56.78);
+
+            Tabulr::Table second_table(table);
+
+            THEN("The output should match an output table created the same way manually")
+            {
+                std::stringstream actual;
+                actual << second_table;
+
+                std::stringstream expected;
+
+                // First row, first column
+                expected << std::setw(format[0].GetWidth()) << std::setprecision(2) << std::setfill(format[0].GetFill()) << std::left << "A" << " ";
+
+                // First row, second column.
+                expected << std::setw(format[1].GetWidth()) << std::setprecision(3) << std::fixed << std::right << std::setfill(format[1].GetFill()) << 12.34 << std::endl;
+
+                // Second row
+                expected << std::setw(format[0].GetWidth()) << std::setprecision(2) << std::left << std::setfill(format[0].GetFill()) << "C" << " ";
+
+                expected << std::setw(format[1].GetWidth()) << std::setprecision(3) << std::fixed << std::right << std::setfill(format[1].GetFill()) << 56.78 << std::endl;
+
+                REQUIRE(actual.str() == expected.str());
+            }
+        }
+    }
 }
