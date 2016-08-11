@@ -42,7 +42,6 @@ namespace Tabulr {
 
 /**
  * Make a new row which is managed interally by the table.
- * The point returned by this function is managed interally, do not deleted it.
  *
  * @return
  */
