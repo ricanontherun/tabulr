@@ -47,11 +47,11 @@ int main()
     table.SetColumnFormat(format);
 
     // Make a row which will act as a header.
-    Tabulr::Row *heading = table.MakeRow();
+    std::shared_ptr<Row> heading = table.MakeRow();
 
     heading->InsertCell("Quarter")->InsertCell("Manager")->InsertCell("Earnings");
 
-    Tabulr::Row *row = table.MakeRow();
+    std::shared_ptr<Tabulr::Row> row = table.MakeRow();
 
     row->InsertCell(1)->InsertCell("Christian")->InsertCell(13345.45);
 

@@ -15,8 +15,6 @@
 
 #include <tabulr/row.h>
 
-#include <tabulr/format.h>
-
 namespace Tabulr
 {
 
@@ -55,12 +53,12 @@ std::ostream &Row::ToStream(
 {
     size_t index = 0;
     size_t size = this->cells.size();
-    uint32_t config_size = column_format.size();
+    size_t config_size = column_format.size();
 
     for ( auto const &cell_it : this->cells ) {
         // We need to determine if there is a associated configuration for this column.
         if ( index < config_size ) {
-            ColumnFormat format = column_format[index];
+            ColumnFormat format = column_format.at(index);
             cell_it.get()->ToStream(out, format);
         } else {
             cell_it.get()->ToStream(out);
@@ -82,4 +80,4 @@ std::size_t Row::Capacity() const
     return this->cells.capacity();
 }
 
-}
+} // End Tabulr

@@ -14,34 +14,31 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <tabulr/table.h>
 
-#include <tabulr/format.h>
+namespace Tabulr {
 
-namespace Tabulr
-{
+    Table::Table() : num_columns(0), num_rows(0) {
 
-Table::Table() : num_columns(0), num_rows(0)
-{
+    }
 
-}
+    Table::Table(const Table &table)
+        : num_columns(table.num_columns), num_rows(table.num_rows) {
+        if (&table != this) {
+            this->column_format = table.column_format;
+            this->rows = table.rows;
+        }
+    }
 
-Table::Table(const Table &table)
-: num_columns(table.num_columns), num_rows(table.num_rows)
-{
-}
+    Table::Table(
+        std::size_t num_columns
+    ) : num_columns(num_columns), num_rows(0) {
+    }
 
-Table::Table(
-    std::size_t num_columns
-) : num_columns(num_columns), num_rows(0)
-{
-}
-
-Table::Table(
-    std::size_t num_columns,
-    std::size_t num_rows
-) : num_columns(num_columns), num_rows(num_rows)
-{
-    this->rows.reserve(num_rows);
-}
+    Table::Table(
+        std::size_t num_columns,
+        std::size_t num_rows
+    ) : num_columns(num_columns), num_rows(num_rows) {
+        this->rows.reserve(num_rows);
+    }
 
 /**
  * Make a new row which is managed interally by the table.
@@ -49,15 +46,14 @@ Table::Table(
  *
  * @return
  */
-Row *Table::MakeRow()
-{
-    this->rows.push_back(
-        std::make_unique<Row>(this->NumberOfColumns())
-    );
+    std::shared_ptr<Row> Table::MakeRow() {
+        this->rows.push_back(
+            std::make_shared<Row>(this->NumberOfColumns())
+        );
 
-    // Return a pointer to the row we just created.
-    return this->rows.back().get();
-}
+        // Return a pointer to the row we just created.
+        return this->rows.back();
+    }
 
 /**
  * Set the column config. Each vector element represents the configuration
@@ -67,43 +63,37 @@ Row *Table::MakeRow()
  *
  * @return
  */
-Table *Table::SetColumnFormat(ColumnFormatVector format)
-{
-    this->column_format = format;
+    Table *Table::SetColumnFormat(ColumnFormatVector format) {
+        this->column_format = format;
 
-    return this;
-}
-
-const ColumnFormatVector &Table::GetColumnFormat() const
-{
-    return this->column_format;
-}
-
-std::ostream &operator<<(std::ostream &out, const Table &table)
-{
-    for ( auto const &row_it : table.rows ) {
-        row_it->ToStream(out, table.GetColumnFormat());
-
-        out << "\n";
+        return this;
     }
 
-    return out;
-}
-
-std::size_t Table::NumberOfColumns() const
-{
-    if ( this->num_columns != 0 )
-    {
-        return this->num_columns;
+    const ColumnFormatVector &Table::GetColumnFormat() const {
+        return this->column_format;
     }
 
-    if ( this->rows.size() >= 1 )
-    {
-        // Get the number of columns in the first row.
-        return this->rows.front()->Capacity();
+    std::ostream &operator<<(std::ostream &out, const Table &table) {
+        for (auto const &row_it : table.rows) {
+            row_it->ToStream(out, table.GetColumnFormat());
+
+            out << "\n";
+        }
+
+        return out;
     }
 
-    return 0;
-}
+    std::size_t Table::NumberOfColumns() const {
+        if (this->num_columns != 0) {
+            return this->num_columns;
+        }
+
+        if (this->rows.size() >= 1) {
+            // Get the number of columns in the first row.
+            return this->rows.front()->Capacity();
+        }
+
+        return 0;
+    }
 
 }

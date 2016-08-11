@@ -3,9 +3,7 @@
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// This program is distributed in the hope that it will be useful,
+// (at your option) any later version.  // // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
@@ -20,11 +18,9 @@
 
 #include <tabulr/row.h>
 
-namespace Tabulr
-{
+namespace Tabulr {
 
-class Table
-{
+    class Table {
     public:
         /**
          * Default constructor
@@ -54,12 +50,11 @@ class Table
         Table(std::size_t num_columns, std::size_t num_rows);
 
         /**
-         * Make a new row which is managed interally by the table.
-         * The point returned by this function is managed interally, do not deleted it.
+         * Make a new row.
          *
          * @return
          */
-        Row *MakeRow();
+        std::shared_ptr<Row> MakeRow();
 
         /**
          * Set the column config. Each vector element represents the configuration
@@ -79,6 +74,7 @@ class Table
         const ColumnFormatVector &GetColumnFormat() const;
 
         friend std::ostream &operator<<(std::ostream &, const Table &);
+
     private:
         ColumnFormatVector column_format;
 
@@ -86,10 +82,10 @@ class Table
 
         std::size_t num_rows;
 
-        std::vector<std::unique_ptr<Row>> rows;
+        std::vector<std::shared_ptr<Row>> rows;
 
         std::size_t NumberOfColumns() const;
-};
+    };
 
 } // Namespace Tabulr
 
