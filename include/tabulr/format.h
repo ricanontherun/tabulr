@@ -18,36 +18,40 @@
 #include <vector>
 #include <cstdint>
 
-namespace Tabulr
-{
+namespace Tabulr {
 
-enum class POSITION : std::uint8_t
-{
-    LEFT = 1,
-    INTERNAL,
-    RIGHT
-};
+    enum class POSITION : std::uint8_t {
+        LEFT = 1,
+        INTERNAL,
+        RIGHT
+    };
 
-class ColumnFormat
-{
+    class ColumnFormat {
     public:
         ColumnFormat();
 
         ColumnFormat(int width);
+
         ColumnFormat(int width, int precision);
+
         ColumnFormat(int width, int precision, char fill);
+
         ColumnFormat(int width, int precision, char fill, POSITION position);
 
         ColumnFormat *SetWidth(int width);
+
         int GetWidth() const;
 
         ColumnFormat *SetPrecision(int precision);
+
         int GetPrecision() const;
 
         ColumnFormat *SetFill(char fill);
+
         char GetFill() const;
 
         ColumnFormat *SetPosition(POSITION position);
+
         POSITION GetPosition() const;
 
     private:
@@ -61,10 +65,10 @@ class ColumnFormat
         char fill;
 
         POSITION position;
-};
+    };
 
 // For convenience
-typedef std::vector<ColumnFormat> ColumnFormatVector;
+    typedef std::vector<ColumnFormat> ColumnFormatVector;
 
 }
 

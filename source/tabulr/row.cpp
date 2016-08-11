@@ -15,69 +15,63 @@
 
 #include <tabulr/row.h>
 
-namespace Tabulr
-{
+namespace Tabulr {
 
-Row::Row()
-{
-}
-
-Row::Row(std::size_t size)
-{
-    this->cells.reserve(size);
-}
-
-std::ostream &Row::ToStream(std::ostream &out) const
-{
-    size_t size = this->cells.size();
-    size_t index = 0;
-
-    for ( auto const &cell_it : this->cells ) {
-        cell_it.get()->ToStream(out);
-
-        // We're only going to print a space for cells in between the start and end cells.
-        if ( size != 1 && index != size - 1 ) {
-            out << " ";
-        }
-
-        index++;
+    Row::Row() {
     }
 
-    return out;
-}
+    Row::Row(std::size_t size) {
+        this->cells.reserve(size);
+    }
 
-std::ostream &Row::ToStream(
+    std::ostream &Row::ToStream(std::ostream &out) const {
+        size_t size = this->cells.size();
+        size_t index = 0;
+
+        for (auto const &cell_it : this->cells) {
+            cell_it.get()->ToStream(out);
+
+            // We're only going to print a space for cells in between the start and end cells.
+            if (size != 1 && index != size - 1) {
+                out << " ";
+            }
+
+            index++;
+        }
+
+        return out;
+    }
+
+    std::ostream &Row::ToStream(
         std::ostream &out,
         const ColumnFormatVector &column_format
-) const
-{
-    size_t index = 0;
-    size_t size = this->cells.size();
-    size_t config_size = column_format.size();
+    ) const {
+        size_t index = 0;
+        size_t size = this->cells.size();
+        size_t config_size = column_format.size();
 
-    for ( auto const &cell_it : this->cells ) {
-        // We need to determine if there is a associated configuration for this column.
-        if ( index < config_size ) {
-            ColumnFormat format = column_format.at(index);
-            cell_it.get()->ToStream(out, format);
-        } else {
-            cell_it.get()->ToStream(out);
+        for (auto const &cell_it : this->cells) {
+            // We need to determine if there is a associated configuration for this column.
+            if (index < config_size) {
+                ColumnFormat format = column_format.at(index);
+                cell_it.get()->ToStream(out, format);
+            } else {
+                cell_it.get()->ToStream(out);
+            }
+
+            // We're only going to print a space for cells in between the start and end cells.
+            if (size != 1 && index != size - 1) {
+                out << " ";
+            }
+
+            index++;
         }
 
-        // We're only going to print a space for cells in between the start and end cells.
-        if ( size != 1 && index != size - 1 ) {
-            out << " ";
-        }
-
-        index++;
+        return out;
     }
 
-    return out;
-}
-
-std::size_t Row::Capacity() const
-{
-    return this->cells.capacity();
-}
+    std::size_t Row::Capacity() const {
+        return this->cells.capacity();
+    }
 
 } // End Tabulr

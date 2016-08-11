@@ -22,12 +22,10 @@
 #include <tabulr/cell.h>
 #include <tabulr/format.h>
 
-namespace Tabulr
-{
+namespace Tabulr {
 
-class Row
-{
-    friend class Table;
+    class Row {
+        friend class Table;
 
     public:
         Row();
@@ -41,14 +39,14 @@ class Row
          *
          * @return
          */
-        template <typename T>
+        template<typename T>
         Row *InsertCell(T content);
 
         std::ostream &ToStream(std::ostream &) const;
 
         std::ostream &ToStream(
-                std::ostream &,
-                const ColumnFormatVector&
+            std::ostream &,
+            const ColumnFormatVector &
         ) const;
 
         /**
@@ -56,17 +54,17 @@ class Row
          * To be honest, this is here to facilitate testing.
          */
         std::size_t Capacity() const;
+
     private:
         std::vector<std::unique_ptr<AbstractCell>> cells;
-};
+    };
 
-template <typename T>
-Row *Row::InsertCell(T content)
-{
-    this->cells.push_back(std::make_unique<Cell<T>>(content));
+    template<typename T>
+    Row *Row::InsertCell(T content) {
+        this->cells.push_back(std::make_unique<Cell<T>>(content));
 
-    return this;
-}
+        return this;
+    }
 
 }
 

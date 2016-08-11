@@ -21,67 +21,65 @@
 #include <iostream>
 #include <iomanip>
 
-namespace Tabulr
-{
+namespace Tabulr {
 
-template <class T>
-class Cell : public AbstractCell
-{
+    template<class T>
+    class Cell : public AbstractCell {
     public:
         Cell(T);
+
         ~Cell() {};
 
         std::ostream &ToStream(std::ostream &out) const;
+
         std::ostream &ToStream(std::ostream &out, const ColumnFormat &) const;
+
     private:
         T content;
-};
+    };
 
-template <class T>
-Cell<T>::Cell(T content) : content(content)
-{
+    template<class T>
+    Cell<T>::Cell(T content) : content(content) {
 
-}
-
-template <class T>
-std::ostream &Cell<T>::ToStream(std::ostream &out) const
-{
-    out << this->content;
-    return out;
-}
-
-template <class T>
-std::ostream &Cell<T>::ToStream(std::ostream &out, const ColumnFormat &format) const
-{
-    if ( format.GetWidth() != 0 ) {
-        out << std::setw(format.GetWidth());
     }
 
-    out << std::setfill(format.GetFill());
-
-    if ( format.GetPrecision() != 0 ) {
-        out << std::fixed;
-        out << std::setprecision(format.GetPrecision());
+    template<class T>
+    std::ostream &Cell<T>::ToStream(std::ostream &out) const {
+        out << this->content;
+        return out;
     }
 
-    std::uint8_t position = static_cast<std::uint8_t>(format.GetPosition());
-
-    if ( position ) {
-        switch ( format.GetPosition() ) {
-            case POSITION::LEFT:
-                out << std::left;
-                break;
-            case POSITION::INTERNAL:
-                out << std::internal;
-                break;
-            case POSITION::RIGHT:
-                out << std::right;
-                break;
+    template<class T>
+    std::ostream &Cell<T>::ToStream(std::ostream &out, const ColumnFormat &format) const {
+        if (format.GetWidth() != 0) {
+            out << std::setw(format.GetWidth());
         }
-    }
 
-    return this->ToStream(out);
-}
+        out << std::setfill(format.GetFill());
+
+        if (format.GetPrecision() != 0) {
+            out << std::fixed;
+            out << std::setprecision(format.GetPrecision());
+        }
+
+        std::uint8_t position = static_cast<std::uint8_t>(format.GetPosition());
+
+        if (position) {
+            switch (format.GetPosition()) {
+                case POSITION::LEFT:
+                    out << std::left;
+                    break;
+                case POSITION::INTERNAL:
+                    out << std::internal;
+                    break;
+                case POSITION::RIGHT:
+                    out << std::right;
+                    break;
+            }
+        }
+
+        return this->ToStream(out);
+    }
 
 }
 

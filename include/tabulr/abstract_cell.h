@@ -19,18 +19,18 @@
 
 #include <tabulr/format.h>
 
-namespace Tabulr
-{
+namespace Tabulr {
 
-class AbstractCell
-{
+    class AbstractCell {
     public:
         AbstractCell() {};
+
         virtual ~AbstractCell() {};
 
         virtual std::ostream &ToStream(std::ostream &) const = 0;
+
         virtual std::ostream &ToStream(std::ostream &, const ColumnFormat &) const = 0;
-};
+    };
 
 }
 

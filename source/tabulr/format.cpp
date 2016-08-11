@@ -15,85 +15,71 @@
 #include <tabulr/format.h>
 
 
-namespace Tabulr
-{
+namespace Tabulr {
 
-ColumnFormat::ColumnFormat()
-: width(0), precision(0), fill(' '), position(POSITION::RIGHT)
-{
+    ColumnFormat::ColumnFormat()
+        : width(0), precision(0), fill(' '), position(POSITION::RIGHT) {
 
-}
+    }
 
-ColumnFormat::ColumnFormat(int width)
-: width(width), precision(0), fill(' '), position(POSITION::RIGHT)
-{
+    ColumnFormat::ColumnFormat(int width)
+        : width(width), precision(0), fill(' '), position(POSITION::RIGHT) {
 
-}
+    }
 
-ColumnFormat::ColumnFormat(int width, int precision)
-: width(width), precision(precision), fill(' '), position(POSITION::RIGHT)
-{
+    ColumnFormat::ColumnFormat(int width, int precision)
+        : width(width), precision(precision), fill(' '), position(POSITION::RIGHT) {
 
-}
+    }
 
-ColumnFormat::ColumnFormat(int width, int precision, char fill)
-: width(width), precision(precision), fill(fill), position(POSITION::RIGHT)
-{
+    ColumnFormat::ColumnFormat(int width, int precision, char fill)
+        : width(width), precision(precision), fill(fill), position(POSITION::RIGHT) {
 
-}
+    }
 
-ColumnFormat::ColumnFormat(int width, int precision, char fill, POSITION position)
-: width(width), precision(precision), fill(fill), position(position)
-{
+    ColumnFormat::ColumnFormat(int width, int precision, char fill, POSITION position)
+        : width(width), precision(precision), fill(fill), position(position) {
 
-}
+    }
 
-ColumnFormat *ColumnFormat::SetWidth(int width)
-{
-    this->width = width;
+    ColumnFormat *ColumnFormat::SetWidth(int width) {
+        this->width = width;
 
-    return this;
-}
+        return this;
+    }
 
-int ColumnFormat::GetWidth() const
-{
-    return this->width;
-}
+    int ColumnFormat::GetWidth() const {
+        return this->width;
+    }
 
-ColumnFormat *ColumnFormat::SetPrecision(int precision)
-{
-    this->precision = precision;
+    ColumnFormat *ColumnFormat::SetPrecision(int precision) {
+        this->precision = precision;
 
-    return this;
-}
+        return this;
+    }
 
-int ColumnFormat::GetPrecision() const
-{
-    return this->precision;
-}
+    int ColumnFormat::GetPrecision() const {
+        return this->precision;
+    }
 
-ColumnFormat *ColumnFormat::SetFill(char fill)
-{
-    this->fill = fill;
+    ColumnFormat *ColumnFormat::SetFill(char fill) {
+        this->fill = fill;
 
-    return this;
-}
+        return this;
+    }
 
-char ColumnFormat::GetFill() const
-{
-    return this->fill;
-}
+    char ColumnFormat::GetFill() const {
+        return this->fill;
+    }
 
-ColumnFormat *ColumnFormat::SetPosition(POSITION position)
-{
-    this->position = position;
+    ColumnFormat *ColumnFormat::SetPosition(POSITION position) {
+        this->position = position;
 
-    return this;
-}
+        return this;
+    }
 
-POSITION ColumnFormat::GetPosition() const
-{
-    return this->position;
-}
+    POSITION ColumnFormat::GetPosition() const {
+        return this->position;
+    }
 
 } // End Tabulr
